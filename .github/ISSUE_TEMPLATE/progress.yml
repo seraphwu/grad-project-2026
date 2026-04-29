@@ -1,0 +1,28 @@
+name: 📝 進度回報
+description: 每週回報這週做了什麼、遇到什麼問題
+title: "[進度] W"
+labels: ["type:progress"]
+body:
+  - type: dropdown
+    id: team
+    attributes:
+      label: 組別
+      options: [MapMo, Diula]
+    validations:
+      required: true
+  - type: textarea
+    id: done
+    attributes:
+      label: 這週完成了什麼
+    validations:
+      required: true
+  - type: textarea
+    id: blocked
+    attributes:
+      label: 遇到什麼困難?需要老師協助嗎?
+  - type: textarea
+    id: next
+    attributes:
+      label: 下週打算做什麼
+    validations:
+      required: true
