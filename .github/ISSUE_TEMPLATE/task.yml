@@ -1,0 +1,45 @@
+name: 📋 新增任務
+description: 開立一個需要完成的任務
+title: "[任務] "
+labels: ["type:task"]
+body:
+  - type: dropdown
+    id: team
+    attributes:
+      label: 組別
+      options:
+        - team:MapMo
+        - team:Diula
+    validations:
+      required: true
+  - type: dropdown
+    id: week
+    attributes:
+      label: 週次
+      options:
+        - W1
+        - W2
+        - W3
+        - W4
+        - W5
+        - W6
+        - W7
+        - W8
+        - W9
+        - W10
+        - W11
+        - W12
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 任務描述
+      placeholder: 這個任務要做什麼?預期產出?
+    validations:
+      required: true
+  - type: input
+    id: deadline
+    attributes:
+      label: 預計完成日 (YYYY-MM-DD)
+      placeholder: 2026-05-08
