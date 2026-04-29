@@ -1,0 +1,8 @@
+# 共用區僅老師可改
+/shared/         @seraphwu
+/advisor/        @seraphwu
+/.github/        @seraphwu
+
+# 各組只能改自己資料夾
+/teams/MapMo/   @seraphwu @組員1 @組員2 @組員3
+/teams/Diula/   @seraphwu @組員4 @組員5 @組員6
