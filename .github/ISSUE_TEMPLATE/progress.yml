@@ -1,28 +1,83 @@
 name: 📝 進度回報
-description: 每週回報這週做了什麼、遇到什麼問題
+description: 每週回報進度 (建議週日晚上開立)
 title: "[進度] W"
 labels: ["type:progress"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 週進度回報
+        每週結束時填寫。標題請補上週次,例:`[進度] W2`
+
   - type: dropdown
     id: team
     attributes:
       label: 組別
-      options: [MapMo, Diula]
+      options:
+        - MapMo (team:a)
+        - Diula (team:b)
     validations:
       required: true
+
+  - type: dropdown
+    id: week
+    attributes:
+      label: 回報週次
+      options:
+        - W1
+        - W2
+        - W3
+        - W4
+        - W5
+        - W6
+        - W7
+        - W8
+        - W9
+        - W10
+        - W11
+        - W12
+    validations:
+      required: true
+
   - type: textarea
     id: done
     attributes:
-      label: 這週完成了什麼
+      label: 這週完成了什麼?
+      description: 具體列出本週的產出
+      placeholder: |
+        - 完成了 X 功能的 prototype
+        - 訪談了 3 位使用者
+        - 修正了 Y bug
     validations:
       required: true
+
   - type: textarea
     id: blocked
     attributes:
-      label: 遇到什麼困難?需要老師協助嗎?
+      label: 遇到什麼困難?
+      description: 卡關的地方,需要老師協助嗎?(沒有可填「無」)
+      placeholder: |
+        - 不確定 X 套件的 license 是否能商用
+        - 跟 Y 組有功能重疊,需要協調
+
   - type: textarea
     id: next
     attributes:
-      label: 下週打算做什麼
+      label: 下週打算做什麼?
+      placeholder: |
+        - 完成 X 模組的 80%
+        - 舉辦第二輪使用者測試
     validations:
       required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 其他想記錄的事 (選填)
+      placeholder: 心得、靈感、需要記錄的決策...
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        老師會在這個 issue 留言給回饋,記得查看通知。

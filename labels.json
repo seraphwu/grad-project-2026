@@ -1,0 +1,237 @@
+[
+  {
+    "name": "team:a",
+    "color": "cccccc",
+    "description": "MapMo"
+  },
+  {
+    "name": "team:b",
+    "color": "cccccc",
+    "description": "Diula"
+  },
+  {
+    "name": "W1",
+    "color": "dddddd",
+    "description": "第 1 週 (5/04-5/10)"
+  },
+  {
+    "name": "W2",
+    "color": "dddddd",
+    "description": "第 2 週 (5/11-5/17)"
+  },
+  {
+    "name": "W3",
+    "color": "dddddd",
+    "description": "第 3 週 (5/18-5/24)"
+  },
+  {
+    "name": "W4",
+    "color": "dddddd",
+    "description": "第 4 週 (5/25-5/31)"
+  },
+  {
+    "name": "W5",
+    "color": "dddddd",
+    "description": "第 5 週 (6/01-6/07)"
+  },
+  {
+    "name": "W6",
+    "color": "bbbbbb",
+    "description": "第 6 週 - 期中報告"
+  },
+  {
+    "name": "W7",
+    "color": "dddddd",
+    "description": "第 7 週 (6/15-6/21)"
+  },
+  {
+    "name": "W8",
+    "color": "dddddd",
+    "description": "第 8 週 (6/22-6/28)"
+  },
+  {
+    "name": "W9",
+    "color": "dddddd",
+    "description": "第 9 週 (6/29-7/05)"
+  },
+  {
+    "name": "W10",
+    "color": "dddddd",
+    "description": "第 10 週 (7/06-7/12)"
+  },
+  {
+    "name": "W11",
+    "color": "dddddd",
+    "description": "第 11 週 (7/13-7/19)"
+  },
+  {
+    "name": "W12",
+    "color": "bbbbbb",
+    "description": "第 12 週 - 成果展"
+  },
+  {
+    "name": "W13",
+    "color": "bbbbbb",
+    "description": "第 13 週 (7/27-8/02)"
+  },
+  {
+    "name": "W14",
+    "color": "bbbbbb",
+    "description": "第 14 週 (8/03-8/09)"
+  },
+  {
+    "name": "W15",
+    "color": "bbbbbb",
+    "description": "第 15 週 (8/10-8/16)"
+  },
+  {
+    "name": "W16",
+    "color": "bbbbbb",
+    "description": "第 16 週 (8/17-8/23)"
+  },
+  {
+    "name": "W17",
+    "color": "bbbbbb",
+    "description": "第 17 週 (8/24-8/30)"
+  },
+  {
+    "name": "W18",
+    "color": "bbbbbb",
+    "description": "第 18 週 (8/31-9/06)"
+  },
+  {
+    "name": "W19",
+    "color": "bbbbbb",
+    "description": "第 19 週 (9/07-9/13)"
+  },
+  {
+    "name": "W20",
+    "color": "bbbbbb",
+    "description": "第 20 週 (9/14-9/20)"
+  },
+  {
+    "name": "W21",
+    "color": "bbbbbb",
+    "description": "第 21 週 (9/21-9/27)"
+  },
+  {
+    "name": "W22",
+    "color": "bbbbbb",
+    "description": "第 22 週 (9/28-10/04)"
+  },
+  {
+    "name": "W23",
+    "color": "bbbbbb",
+    "description": "第 23 週 (10/05-10/11)"
+  },
+  {
+    "name": "W24",
+    "color": "bbbbbb",
+    "description": "第 24 週 (10/12-10/18)"
+  },
+  {
+    "name": "W25",
+    "color": "bbbbbb",
+    "description": "第 25 週 (10/19-10/25)"
+  },
+  {
+    "name": "W26",
+    "color": "bbbbbb",
+    "description": "第 26 週 (10/26-11/01)"
+  },
+  {
+    "name": "W27",
+    "color": "bbbbbb",
+    "description": "第 27 週 (11/02-11/08)"
+  },
+  {
+    "name": "W28",
+    "color": "bbbbbb",
+    "description": "第 28 週 (11/09-11/15)"
+  },
+  {
+    "name": "W29",
+    "color": "bbbbbb",
+    "description": "第 29 週 (11/16-11/22)"
+  },
+  {
+    "name": "W30",
+    "color": "bbbbbb",
+    "description": "第 30 週 (11/23-11/29)"
+  },
+  {
+    "name": "W31",
+    "color": "bbbbbb",
+    "description": "第 31 週 (11/30-12/06)"
+  },
+  {
+    "name": "type:task",
+    "color": "e8e8e8",
+    "description": "任務"
+  },
+  {
+    "name": "type:progress",
+    "color": "e8e8e8",
+    "description": "進度回報"
+  },
+  {
+    "name": "type:design",
+    "color": "e8e8e8",
+    "description": "設計類"
+  },
+  {
+    "name": "type:dev",
+    "color": "e8e8e8",
+    "description": "開發類"
+  },
+  {
+    "name": "type:research",
+    "color": "e8e8e8",
+    "description": "研究/文獻"
+  },
+  {
+    "name": "type:meeting",
+    "color": "e8e8e8",
+    "description": "會議/討論"
+  },
+  {
+    "name": "type:documentation",
+    "color": "e8e8e8",
+    "description": "文件撰寫"
+  },
+  {
+    "name": "type:milestone",
+    "color": "a0a0a0",
+    "description": "重要里程碑"
+  },
+  {
+    "name": "priority:high",
+    "color": "888888",
+    "description": "高優先"
+  },
+  {
+    "name": "priority:normal",
+    "color": "cccccc",
+    "description": "一般優先"
+  },
+  {
+    "name": "priority:low",
+    "color": "eeeeee",
+    "description": "低優先"
+  },
+  {
+    "name": "status:blocked",
+    "color": "999999",
+    "description": "卡關,需協助"
+  },
+  {
+    "name": "status:review",
+    "color": "999999",
+    "description": "等待審核"
+  },
+  {
+    "name": "status:overdue",
+    "color": "777777",
+    "description": "已逾期"
+  }
+]

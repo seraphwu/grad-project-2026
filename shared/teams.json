@@ -1,0 +1,51 @@
+{
+  "_comment": "組別對照表:Label ID (內部) → 顯示名稱 (對外)。儀表板讀此檔取得組名。",
+  "_principle": "新增組別請新增條目;改名只改 display_name,不要改 id。",
+
+  "teams": {
+    "team:a": {
+      "id": "team:a",
+      "display_name": "MapMo",
+      "slug": "mapmo",
+      "topic": "TBD - 待填入專案主題",
+      "members": [
+        {
+          "github": "@alice-github",
+          "role": "組長"
+        },
+        {
+          "github": "@bob-github",
+          "role": "組員"
+        },
+        {
+          "github": "@chen-github",
+          "role": "組員"
+        }
+      ],
+      "advisor_focus": "TBD - 你想對這組強調的指導重點",
+      "folder": "/teams/team-a/"
+    },
+    "team:b": {
+      "id": "team:b",
+      "display_name": "Diula",
+      "slug": "diula",
+      "topic": "TBD - 待填入專案主題",
+      "members": [
+        {
+          "github": "@dave-github",
+          "role": "組長"
+        },
+        {
+          "github": "@emma-github",
+          "role": "組員"
+        },
+        {
+          "github": "@frank-github",
+          "role": "組員"
+        }
+      ],
+      "advisor_focus": "TBD - 你想對這組強調的指導重點",
+      "folder": "/teams/team-b/"
+    }
+  }
+}

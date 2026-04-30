@@ -3,19 +3,28 @@ description: 開立一個需要完成的任務
 title: "[任務] "
 labels: ["type:task"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 開立新任務
+        填寫以下欄位後送出。送出後請到右側 Assignees 指派負責的組員、選擇對應的 Milestone (週次)。
+
   - type: dropdown
     id: team
     attributes:
       label: 組別
+      description: 這個任務屬於哪一組?
       options:
-        - team:MapMo
-        - team:Diula
+        - MapMo (team:a)
+        - Diula (team:b)
     validations:
       required: true
+
   - type: dropdown
     id: week
     attributes:
       label: 週次
+      description: 預計在哪一週完成?
       options:
         - W1
         - W2
@@ -31,15 +40,55 @@ body:
         - W12
     validations:
       required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: 任務類型
+      options:
+        - design - 設計
+        - dev - 開發
+        - research - 研究/文獻
+        - meeting - 會議/討論
+        - documentation - 文件撰寫
+        - milestone - 重要里程碑
+        - other - 其他
+    validations:
+      required: true
+
   - type: textarea
     id: description
     attributes:
       label: 任務描述
-      placeholder: 這個任務要做什麼?預期產出?
+      description: 這個任務具體要做什麼?
+      placeholder: |
+        例:
+        - 完成登入畫面的 wireframe
+        - 包含手機版與桌面版兩種尺寸
+        - 上傳到 Figma 連結...
     validations:
       required: true
+
   - type: input
     id: deadline
     attributes:
       label: 預計完成日 (YYYY-MM-DD)
       placeholder: 2026-05-08
+    validations:
+      required: true
+
+  - type: textarea
+    id: criteria
+    attributes:
+      label: 完成條件 (Definition of Done)
+      description: 怎樣才算完成?(選填,但建議寫)
+      placeholder: |
+        - [ ] Wireframe 完成並上傳 Figma
+        - [ ] 經組長確認
+        - [ ] 在組會中報告
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **送出後別忘了**:右側欄位指派 Assignees + 選擇 Milestone。

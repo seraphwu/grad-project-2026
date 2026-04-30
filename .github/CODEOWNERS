@@ -1,8 +1,30 @@
-# 共用區僅老師可改
-/shared/         @seraphwu
-/advisor/        @seraphwu
-/.github/        @seraphwu
+# =============================================================
+# CODEOWNERS - 畢業製作 2026 權限控制
+# =============================================================
+# 此檔案搭配 Branch Protection Rules 使用
+# 設定路徑:Settings → Branches → Add rule → Require review from Code Owners
+#
+# 組別對照:
+#   team:a  →  MapMo
+#   team:b  →  Diula
+#
+# 使用方式:
+# 1. 把下方的 @advisor-username 換成你的 GitHub 帳號
+# 2. 把各組的 @組員1 @組員2 等換成實際的學生 GitHub 帳號
+# 3. push 此檔到 .github/CODEOWNERS
+# =============================================================
 
-# 各組只能改自己資料夾
-/teams/MapMo/   @seraphwu @組員1 @組員2 @組員3
-/teams/Diula/   @seraphwu @組員4 @組員5 @組員6
+# 共用區僅老師可改
+/shared/         @advisor-username
+/advisor/        @advisor-username
+/.github/        @advisor-username
+
+# README 與根目錄文件僅老師可改
+/README.md       @advisor-username
+/LICENSE         @advisor-username
+
+# A 組 - MapMo
+/teams/team-a/   @advisor-username @alice-github @bob-github @chen-github
+
+# B 組 - Diula
+/teams/team-b/   @advisor-username @dave-github @emma-github @frank-github
