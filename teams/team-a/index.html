@@ -23,7 +23,16 @@
 
 <main class="main">
 
-  <div id="error-box" class="notice warn" style="display:none"></div>
+  
+  <div class="token-bar" id="tok-bar" style="margin-bottom:20px;">
+    <label>GitHub PAT</label>
+    <input class="token-input" id="tok-input" type="password"
+           placeholder="ghp_... (選填，提高 API 限額)">
+    <button class="token-btn" onclick="applyToken()">套用</button>
+    <span class="rate-hint" id="rate-hint">—</span>
+  </div>
+
+<div id="error-box" class="notice warn" style="display:none"></div>
 
   <!-- Hero -->
   <div class="hero-team">
@@ -106,10 +115,26 @@ function weekInfo() {
   return { week, dayOfWeek, pct };
 }
 
-async function ghFetch(path) {
-  const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`, {
-    headers: { Accept: 'application/vnd.github+json' }
+// ── Token ──
+let ghToken = localStorage.getItem('gh_pat') || '';
+function applyToken() {
+  const v = $('tok-input').value.trim();
+  if (v) { ghToken = v; localStorage.setItem('gh_pat', v); }
+  $('rate-hint').textContent = ghToken ? 'PAT 已套用' : '未認證';
+  loadAll();
+}
+if (ghToken) {
+  // 頁面載入時若有 token，填入欄位並顯示狀態
+  document.addEventListener('DOMContentLoaded', () => {
+    const el = $('tok-input');
+    if (el) el.value = ghToken;
   });
+}
+
+async function ghFetch(path) {
+  const headers = { Accept: 'application/vnd.github+json' };
+  if (ghToken) headers.Authorization = `Bearer ${ghToken}`;
+  const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`, { headers });
   const rem = r.headers.get('X-RateLimit-Remaining');
   const lim = r.headers.get('X-RateLimit-Limit');
   if (rem !== null) $('hd-rate').textContent = `API ${rem}/${lim}`;
