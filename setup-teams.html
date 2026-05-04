@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>畢製管理 · 組別設定</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0f0f0f;
+  --surface:  #1a1a1a;
+  --border:   #2e2e2e;
+  --border2:  #3e3e3e;
+  --text:     #e8e8e8;
+  --muted:    #888;
+  --accent:   #e8e8e8;
+  --ok:       #4ade80;
+  --warn:     #fb923c;
+  --err:      #f87171;
+  --radius:   10px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'SF Pro Text', 'PingFang TC', 'Noto Sans TC', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 40px 20px 80px;
+}
+
+.page-header {
+  max-width: 780px;
+  margin: 0 auto 40px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.page-header h1 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+.page-header .badge {
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 2px 7px;
+  letter-spacing: .05em;
+}
+
+/* PAT bar */
+.pat-bar {
+  max-width: 780px;
+  margin: 0 auto 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pat-bar label {
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.pat-bar input {
+  flex: 1;
+  min-width: 200px;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: monospace;
+  font-size: 13px;
+  padding: 7px 12px;
+  outline: none;
+}
+.pat-bar input:focus { border-color: #555; }
+.pat-hint { font-size: 11px; color: var(--muted); }
+.pat-hint.ok { color: var(--ok); }
+
+/* repo bar */
+.repo-bar {
+  max-width: 780px;
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 12px; color: var(--muted); }
+.field input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  padding: 8px 12px;
+  outline: none;
+}
+.field input:focus { border-color: #555; }
+
+/* teams */
+.teams-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 600px) { .teams-wrap { grid-template-columns: 1fr; } }
+
+.team-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.team-card-head {
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.team-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  flex-shrink: 0;
+}
+.team-a .team-dot { background: #60a5fa; }
+.team-b .team-dot { background: #a78bfa; }
+
+.team-card-head input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  min-width: 0;
+}
+.team-id {
+  font-size: 11px;
+  color: var(--muted);
+  font-family: monospace;
+}
+
+.members-list { padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; }
+
+.member-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 8px 10px;
+}
+.member-row input {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  min-width: 0;
+}
+.member-row input.gh {
+  flex: 2;
+  font-family: monospace;
+  color: #93c5fd;
+}
+.member-row input.role {
+  flex: 1;
+  color: var(--muted);
+  font-size: 12px;
+}
+.member-row .remove-btn {
+  background: none;
+  border: none;
+  color: #444;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+  transition: color .15s;
+}
+.member-row .remove-btn:hover { color: var(--err); }
+
+.add-btn {
+  margin: 0 16px 14px;
+  background: none;
+  border: 1px dashed var(--border2);
+  border-radius: 7px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 7px;
+  width: calc(100% - 32px);
+  transition: border-color .15s, color .15s;
+}
+.add-btn:hover { border-color: #555; color: var(--text); }
+
+/* preview */
+.preview-wrap {
+  max-width: 780px;
+  margin: 28px auto 0;
+}
+.preview-wrap summary {
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--muted);
+  user-select: none;
+  padding: 4px 0;
+}
+.preview-wrap summary:hover { color: var(--text); }
+.preview-wrap pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: #86efac;
+  font-family: monospace;
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding: 16px 20px;
+  white-space: pre;
+}
+
+/* actions */
+.actions {
+  max-width: 780px;
+  margin: 24px auto 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn {
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 22px;
+  transition: opacity .15s;
+}
+.btn:hover { opacity: .85; }
+.btn-primary { background: #e8e8e8; color: #0f0f0f; }
+.btn-ghost {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  color: var(--text);
+}
+
+.status-msg {
+  font-size: 13px;
+  padding: 4px 0;
+}
+.status-msg.ok   { color: var(--ok); }
+.status-msg.err  { color: var(--err); }
+.status-msg.wait { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>畢製管理 · 組別設定</h1>
+  <span class="badge">setup</span>
+</div>
+
+<!-- PAT -->
+<div class="pat-bar">
+  <label>GitHub PAT</label>
+  <input type="password" id="pat-input" placeholder="ghp_... （需要 repo 寫入權限）">
+  <span class="pat-hint" id="pat-hint">未填入</span>
+</div>
+
+<!-- Repo -->
+<div class="repo-bar">
+  <div class="field">
+    <label>Owner</label>
+    <input type="text" id="owner" value="seraphwu" placeholder="github username">
+  </div>
+  <div class="field">
+    <label>Repository</label>
+    <input type="text" id="repo" value="grad-project-2026" placeholder="repo name">
+  </div>
+</div>
+
+<!-- Teams -->
+<div class="teams-wrap">
+  <div class="team-card team-a" id="card-a">
+    <div class="team-card-head">
+      <div class="team-dot"></div>
+      <input type="text" id="name-a" value="MapMo" placeholder="組別顯示名稱">
+      <span class="team-id">team:a</span>
+    </div>
+    <div class="members-list" id="members-a"></div>
+    <button class="add-btn" onclick="addMember('a')">＋ 新增成員</button>
+  </div>
+
+  <div class="team-card team-b" id="card-b">
+    <div class="team-card-head">
+      <div class="team-dot"></div>
+      <input type="text" id="name-b" value="Diula" placeholder="組別顯示名稱">
+      <span class="team-id">team:b</span>
+    </div>
+    <div class="members-list" id="members-b"></div>
+    <button class="add-btn" onclick="addMember('b')">＋ 新增成員</button>
+  </div>
+</div>
+
+<!-- Preview -->
+<div class="preview-wrap">
+  <details>
+    <summary>預覽 teams.json</summary>
+    <pre id="json-preview"></pre>
+  </details>
+</div>
+
+<!-- Actions -->
+<div class="actions">
+  <button class="btn btn-primary" onclick="writeToGitHub()">寫入 GitHub repo</button>
+  <button class="btn btn-ghost" onclick="downloadJSON()">下載 teams.json</button>
+  <span class="status-msg" id="status-msg"></span>
+</div>
+
+<script>
+// ── 初始預設成員 ──
+const DEFAULT = {
+  a: [
+    { github: '@alice-github', role: '組長' },
+    { github: '@bob-github',   role: '組員' },
+    { github: '@chen-github',  role: '組員' },
+  ],
+  b: [
+    { github: '@dave-github',  role: '組長' },
+    { github: '@emma-github',  role: '組員' },
+    { github: '@frank-github', role: '組員' },
+  ]
+};
+
+function renderMember(team, idx, gh, role) {
+  const row = document.createElement('div');
+  row.className = 'member-row';
+  row.dataset.idx = idx;
+  row.innerHTML = `
+    <input class="gh"   type="text" value="${gh}"   placeholder="@github-username" oninput="updatePreview()">
+    <input class="role" type="text" value="${role}" placeholder="組長 / 組員"       oninput="updatePreview()">
+    <button class="remove-btn" onclick="removeMember('${team}', this)" title="移除">×</button>`;
+  return row;
+}
+
+function addMember(team, gh = '', role = '組員') {
+  const list = document.getElementById(`members-${team}`);
+  const idx  = list.children.length;
+  list.appendChild(renderMember(team, idx, gh, role));
+  updatePreview();
+}
+
+function removeMember(team, btn) {
+  btn.closest('.member-row').remove();
+  updatePreview();
+}
+
+function getTeamData(team) {
+  const name    = document.getElementById(`name-${team}`).value.trim();
+  const slug    = name.toLowerCase().replace(/\s+/g, '-');
+  const rows    = document.querySelectorAll(`#members-${team} .member-row`);
+  const members = [...rows].map(r => ({
+    github: r.querySelector('.gh').value.trim(),
+    role:   r.querySelector('.role').value.trim()
+  })).filter(m => m.github);
+  return { display_name: name, slug, members, link: `../teams/team-${team}/` };
+}
+
+function buildJSON() {
+  return {
+    'team:a': getTeamData('a'),
+    'team:b': getTeamData('b')
+  };
+}
+
+function updatePreview() {
+  document.getElementById('json-preview').textContent =
+    JSON.stringify(buildJSON(), null, 2);
+}
+
+// PAT hint
+document.getElementById('pat-input').addEventListener('input', function() {
+  const hint = document.getElementById('pat-hint');
+  if (this.value.trim()) {
+    hint.textContent = '已填入';
+    hint.className = 'pat-hint ok';
+  } else {
+    hint.textContent = '未填入';
+    hint.className = 'pat-hint';
+  }
+  updatePreview();
+});
+
+// 監聽名稱欄位
+['name-a','name-b'].forEach(id =>
+  document.getElementById(id).addEventListener('input', updatePreview)
+);
+
+// ── GitHub 寫入 ──
+async function writeToGitHub() {
+  const pat   = document.getElementById('pat-input').value.trim();
+  const owner = document.getElementById('owner').value.trim();
+  const repo  = document.getElementById('repo').value.trim();
+  const msg   = document.getElementById('status-msg');
+
+  if (!pat)   return setStatus('請先填入 GitHub PAT', 'err');
+  if (!owner) return setStatus('請填入 Owner', 'err');
+  if (!repo)  return setStatus('請填入 Repo 名稱', 'err');
+
+  setStatus('連線中…', 'wait');
+
+  const content = JSON.stringify(buildJSON(), null, 2);
+  const path    = 'shared/teams.json';
+  const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+  const headers = {
+    'Accept':        'application/vnd.github+json',
+    'Authorization': `Bearer ${pat}`,
+    'Content-Type':  'application/json'
+  };
+
+  // 先取得現有檔案 SHA（更新需要）
+  let sha = null;
+  try {
+    const res = await fetch(apiBase, { headers });
+    if (res.ok) {
+      const data = await res.json();
+      sha = data.sha;
+    }
+  } catch (_) {}
+
+  const body = {
+    message: 'chore: update teams.json via setup page',
+    content: btoa(unescape(encodeURIComponent(content))),
+    ...(sha ? { sha } : {})
+  };
+
+  try {
+    const res = await fetch(apiBase, {
+      method:  'PUT',
+      headers,
+      body:    JSON.stringify(body)
+    });
+    if (res.ok) {
+      setStatus('✓ 已成功寫入 shared/teams.json', 'ok');
+    } else {
+      const err = await res.json();
+      setStatus(`錯誤：${err.message}`, 'err');
+    }
+  } catch (e) {
+    setStatus(`網路錯誤：${e.message}`, 'err');
+  }
+}
+
+function downloadJSON() {
+  const content = JSON.stringify(buildJSON(), null, 2);
+  const blob    = new Blob([content], { type: 'application/json' });
+  const a       = document.createElement('a');
+  a.href        = URL.createObjectURL(blob);
+  a.download    = 'teams.json';
+  a.click();
+}
+
+function setStatus(msg, type) {
+  const el = document.getElementById('status-msg');
+  el.textContent = msg;
+  el.className   = `status-msg ${type}`;
+}
+
+// ── 初始化 ──
+DEFAULT.a.forEach(m => addMember('a', m.github, m.role));
+DEFAULT.b.forEach(m => addMember('b', m.github, m.role));
+updatePreview();
+</script>
+</body>
+</html>
