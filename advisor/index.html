@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>畢製管理 · 老師總覽</title>
 <link rel="stylesheet" href="../shared/dashboard.css">
+
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#1a1a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="畢製管理">
+<link rel="apple-touch-icon" href="../shared/icons/icon-192.png">
 </head>
 <body>
 
@@ -374,6 +382,27 @@ async function loadAll() {
 }
 
 loadAll();
+</script>
+
+<!-- PWA Service Worker 註冊 -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => {
+        console.log('[SW] 已註冊，scope:', reg.scope);
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              console.log('[SW] 新版本可用，重新整理即可更新');
+            }
+          });
+        });
+      })
+      .catch(err => console.warn('[SW] 註冊失敗:', err));
+  });
+}
 </script>
 </body>
 </html>
