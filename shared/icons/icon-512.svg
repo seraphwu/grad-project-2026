@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1a1a1a"/>
+  <text x="256" y="210" font-family="sans-serif" font-size="180" font-weight="500" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">畢</text>
+  <text x="256" y="330" font-family="monospace" font-size="72" font-weight="400" fill="#aaaaaa" text-anchor="middle" dominant-baseline="middle" letter-spacing="8">ICs</text>
+  <text x="256" y="430" font-family="sans-serif" font-size="46" font-weight="400" fill="#666666" text-anchor="middle" dominant-baseline="middle" letter-spacing="6">林展指導</text>
+</svg>
