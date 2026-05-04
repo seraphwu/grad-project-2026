@@ -46,10 +46,21 @@
       </div>
       <div class="wb-track"><div class="wb-fill" id="wb-fill" style="width:0%"></div></div>
     </div>
-    <div class="wb-block wb-right">
-      <div class="wb-label">距成果展</div>
-      <div class="wb-value" id="wb-cd">—</div>
-      <div class="wb-sub">天</div>
+    <div class="wb-block wb-right" style="display:flex;flex-direction:column;gap:10px;text-align:right;">
+      <div>
+        <div class="wb-label">距校內展 <span style="opacity:.5;font-size:9px;">10/13</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:5px;">
+          <div class="wb-value" id="wb-cd-inner">—</div>
+          <div class="wb-sub">天</div>
+        </div>
+      </div>
+      <div>
+        <div class="wb-label">距校外展 <span style="opacity:.5;font-size:9px;">12/04</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:flex-end;gap:5px;">
+          <div class="wb-value" id="wb-cd-outer">—</div>
+          <div class="wb-sub">天</div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -72,8 +83,10 @@
 const OWNER     = 'seraphwu';
 const REPO      = 'grad-project-2026';
 const START     = new Date('2026-02-23T00:00:00+08:00');
-const END       = new Date('2027-01-03T23:59:59+08:00');
-const TOTAL_WKS = 45;
+const END        = new Date('2027-01-03T23:59:59+08:00');
+const INNER_SHOW = new Date('2026-10-13T23:59:59+08:00'); // 校內展
+const OUTER_SHOW = new Date('2026-12-04T23:59:59+08:00'); // 校外展
+const TOTAL_WKS  = 45;
 const MS_WEEKS  = { 6: '期中', 12: '成果展' };
 
 const TEAMS = {
@@ -111,9 +124,10 @@ function weekInfo() {
   if (now > END) return { after: true };
   const week      = Math.floor(days / 7) + 1;
   const dayOfWeek = (days % 7) + 1;
-  const pct       = Math.min(100, Math.round((days / (TOTAL_WKS * 7)) * 100));
-  const cdDays    = Math.ceil((END - now) / 86400000);
-  return { week, dayOfWeek, pct, cdDays };
+  const pct         = Math.min(100, Math.round((days / (TOTAL_WKS * 7)) * 100));
+  const cdInner     = Math.max(0, Math.ceil((INNER_SHOW - now) / 86400000));
+  const cdOuter     = Math.max(0, Math.ceil((OUTER_SHOW - now) / 86400000));
+  return { week, dayOfWeek, pct, cdInner, cdOuter };
 }
 
 function apiHeaders() {
@@ -169,24 +183,27 @@ if (ghToken) { $('tok-input').value = ghToken; $('rate-hint').textContent = '已
 function renderWeekBanner() {
   const info = weekInfo();
   if (info.before) {
-    $('wb-week').textContent = '尚未開始';
-    $('wb-day').textContent  = `${info.daysUntil} 天後啟動`;
-    $('wb-cd').textContent   = '—';
+    $('wb-week').textContent    = '尚未開始';
+    $('wb-day').textContent     = `${info.daysUntil} 天後啟動`;
+    $('wb-cd-inner').textContent = '—';
+    $('wb-cd-outer').textContent = '—';
     return;
   }
   if (info.after) {
-    $('wb-week').textContent = '已完成';
-    $('wb-day').textContent  = `共 ${TOTAL_WKS} 週`;
-    $('wb-pct').textContent  = '100%';
-    $('wb-fill').style.width = '100%';
-    $('wb-cd').textContent   = '0';
+    $('wb-week').textContent    = '已完成';
+    $('wb-day').textContent     = `共 ${TOTAL_WKS} 週`;
+    $('wb-pct').textContent     = '100%';
+    $('wb-fill').style.width    = '100%';
+    $('wb-cd-inner').textContent = '0';
+    $('wb-cd-outer').textContent = '0';
     return;
   }
-  $('wb-week').textContent  = `第 ${info.week} 週`;
-  $('wb-day').textContent   = `第 ${info.dayOfWeek} 天`;
-  $('wb-pct').textContent   = `${info.pct}%`;
-  $('wb-fill').style.width  = `${info.pct}%`;
-  $('wb-cd').textContent    = info.cdDays;
+  $('wb-week').textContent     = `第 ${info.week} 週`;
+  $('wb-day').textContent      = `第 ${info.dayOfWeek} 天`;
+  $('wb-pct').textContent      = `${info.pct}%`;
+  $('wb-fill').style.width     = `${info.pct}%`;
+  $('wb-cd-inner').textContent = info.cdInner;
+  $('wb-cd-outer').textContent = info.cdOuter;
 }
 
 // ── Timeline ──
