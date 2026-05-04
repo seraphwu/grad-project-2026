@@ -1,31 +1,3 @@
----
-filename: manual-grad-system-student-handbook.md
-title: 畢製管理系統 - 學生使用手冊
-aliases:
-  - 學生手冊
-  - Student Handbook
-  - 畢製 Issues 操作手冊
-date: 2026-04-29
-created: 2026-04-29 14:00
-updated: 2026-04-29 14:00
-tags:
-  - manual
-  - grad-project
-  - github
-  - student
-  - handbook
-status: draft
-type: manual
-project: 2026-04-grad-project-system
-project_dir: 2026-04-grad-project-system
-area: Teaching
-description: 給畢製學生的單頁操作手冊。教如何開 issue、勾選完成、回報進度。完全不需要會 Git。
-based_on_spec: v3.7.6
-related:
-  - "[[000-project-grad-system]]"
-  - "[[guide-grad-system-github-setup]]"
----
-
 # 畢業製作專案管理 - 學生操作手冊
 
 > [!info] 你需要的能力
