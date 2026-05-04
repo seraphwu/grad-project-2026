@@ -10,19 +10,27 @@
       "topic": "TBD - 待填入專案主題",
       "members": [
         {
-          "github": "@alice-github",
-          "role": "組長"
+          "github": "@aliceyyjweb",
+          "role": "PM"
         },
         {
-          "github": "@bob-github",
-          "role": "組員"
+          "github": "jessica6817",
+          "role": "設計"
         },
         {
-          "github": "@chen-github",
-          "role": "組員"
+          "github": "@katiewuhua",
+          "role": "社群行銷公關"
+        },
+        {
+          "github": "@emily650359",
+          "role": "社群行銷公關"
+        },
+        {
+          "github": "@yunyunyunyyyyy",
+          "role": "社群行銷公關"
         }
       ],
-      "advisor_focus": "TBD - 你想對這組強調的指導重點",
+      "advisor_focus": "TBD - 介面流程",
       "folder": "/teams/team-a/"
     },
     "team:b": {
@@ -32,15 +40,23 @@
       "topic": "TBD - 待填入專案主題",
       "members": [
         {
-          "github": "@dave-github",
-          "role": "組長"
+          "github": "@hsiaoting0517",
+          "role": "PM"
         },
         {
-          "github": "@emma-github",
+          "github": "@Beckymiao",
           "role": "組員"
         },
         {
-          "github": "@frank-github",
+          "github": "@yuqing915",
+          "role": "組員"
+        },
+        {
+          "github": "@weihsien0820",
+          "role": "組員"
+        },
+        {
+          "github": "@NINCHANG",
           "role": "組員"
         }
       ],
