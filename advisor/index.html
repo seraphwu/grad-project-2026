@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>畢製管理 · 老師總覽</title>
+<link rel="stylesheet" href="../shared/dashboard.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-brand">
+    <span class="brand-name">畢製管理 2026</span>
+    <span class="brand-badge">老師總覽</span>
+  </div>
+  <div class="header-meta">
+    <span class="live-dot"></span>
+    <span id="hd-rate">—</span>
+    <span>·</span>
+    <span id="hd-clock">—</span>
+  </div>
+</header>
+
+<main class="main">
+
+  <div class="token-bar">
+    <label>GitHub PAT</label>
+    <input class="token-input" id="tok-input" type="password"
+           placeholder="ghp_... (可選，提高 API 限額至 5000/hr)">
+    <button class="token-btn" onclick="applyToken()">套用</button>
+    <span class="rate-hint" id="rate-hint">未認證 · 60 次/hr</span>
+  </div>
+
+  <div id="error-box" class="notice warn" style="display:none"></div>
+
+  <div class="week-banner">
+    <div class="wb-block">
+      <div class="wb-label">目前進度</div>
+      <div class="wb-value" id="wb-week">—</div>
+      <div class="wb-sub"  id="wb-day">—</div>
+    </div>
+    <div class="wb-progress">
+      <div class="wb-prog-row">
+        <span>2026-05-04</span>
+        <span id="wb-pct">0%</span>
+      </div>
+      <div class="wb-track"><div class="wb-fill" id="wb-fill" style="width:0%"></div></div>
+    </div>
+    <div class="wb-block wb-right">
+      <div class="wb-label">距成果展</div>
+      <div class="wb-value" id="wb-cd">—</div>
+      <div class="wb-sub">天</div>
+    </div>
+  </div>
+
+  <div class="card timeline-wrap" style="margin-bottom:20px;">
+    <div class="section-label">12 週時間軸</div>
+    <div class="tl-grid" id="tl-grid" style="--tl-cols:12"></div>
+  </div>
+
+  <div class="section-label">各組狀態</div>
+  <div class="teams-grid" id="teams-grid">
+    <div class="loading-text">從 GitHub Issues 載入中⋯</div>
+  </div>
+
+  <div class="section-label">行事曆</div>
+  <div class="cal-wrap" id="cal-wrap"></div>
+
+</main>
+
+<script>
+const OWNER     = 'seraphwu';
+const REPO      = 'grad-project-2026';
+const START     = new Date('2026-05-04T00:00:00+08:00');
+const END       = new Date('2026-07-26T23:59:59+08:00');
+const TOTAL_WKS = 12;
+const MS_WEEKS  = { 6: '期中', 12: '成果展' };
+
+const TEAMS = {
+  'team:a': {
+    display_name: 'MapMo', slug: 'mapmo',
+    members: [
+      { github: '@alice-github', role: '組長' },
+      { github: '@bob-github',   role: '組員' },
+      { github: '@chen-github',  role: '組員' },
+    ],
+    link: '../teams/team-a/'
+  },
+  'team:b': {
+    display_name: 'Diula', slug: 'diula',
+    members: [
+      { github: '@dave-github',  role: '組長' },
+      { github: '@emma-github',  role: '組員' },
+      { github: '@frank-github', role: '組員' },
+    ],
+    link: '../teams/team-b/'
+  }
+};
+
+let ghToken  = localStorage.getItem('gh_pat') || '';
+let allIssues = [];
+
+const $  = id => document.getElementById(id);
+const tw = () => new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Taipei' }));
+
+function weekInfo() {
+  const now  = tw();
+  const diff = now - START;
+  const days = Math.floor(diff / 86400000);
+  if (days < 0) return { before: true, daysUntil: -days };
+  if (now > END) return { after: true };
+  const week      = Math.floor(days / 7) + 1;
+  const dayOfWeek = (days % 7) + 1;
+  const pct       = Math.min(100, Math.round((days / (TOTAL_WKS * 7)) * 100));
+  const cdDays    = Math.ceil((END - now) / 86400000);
+  return { week, dayOfWeek, pct, cdDays };
+}
+
+function apiHeaders() {
+  const h = { Accept: 'application/vnd.github+json' };
+  if (ghToken) h.Authorization = `Bearer ${ghToken}`;
+  return h;
+}
+
+async function ghFetch(path) {
+  const r = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/${path}`, { headers: apiHeaders() });
+  const rem = r.headers.get('X-RateLimit-Remaining');
+  const lim = r.headers.get('X-RateLimit-Limit');
+  if (rem !== null) $('hd-rate').textContent = `API ${rem}/${lim}`;
+  if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
+  return r.json();
+}
+
+async function fetchAllIssues() {
+  let page = 1, acc = [];
+  while (true) {
+    const batch = await ghFetch(`issues?state=all&per_page=100&page=${page}`);
+    if (!batch.length) break;
+    acc = acc.concat(batch);
+    if (batch.length < 100) break;
+    page++;
+  }
+  return acc;
+}
+
+const labels     = i => i.labels.map(l => l.name);
+const issueWeek  = i => labels(i).find(l => /^W\d+$/.test(l)) || null;
+const issueTeam  = i => labels(i).find(l => l.startsWith('team:')) || null;
+const isBlocked  = i => labels(i).includes('status:blocked');
+
+// ── Clock ──
+function updateClock() {
+  $('hd-clock').textContent = tw().toLocaleString('zh-TW', {
+    month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'
+  });
+}
+setInterval(updateClock, 30000);
+updateClock();
+
+// ── Token ──
+function applyToken() {
+  const v = $('tok-input').value.trim();
+  if (v) { ghToken = v; localStorage.setItem('gh_pat', v); $('rate-hint').textContent = '已套用 PAT · 5000 次/hr'; }
+  loadAll();
+}
+if (ghToken) { $('tok-input').value = ghToken; $('rate-hint').textContent = '已套用 PAT · 5000 次/hr'; }
+
+// ── Week Banner ──
+function renderWeekBanner() {
+  const info = weekInfo();
+  if (info.before) {
+    $('wb-week').textContent = '尚未開始';
+    $('wb-day').textContent  = `${info.daysUntil} 天後啟動`;
+    $('wb-cd').textContent   = '—';
+    return;
+  }
+  if (info.after) {
+    $('wb-week').textContent = '已完成';
+    $('wb-day').textContent  = `共 ${TOTAL_WKS} 週`;
+    $('wb-pct').textContent  = '100%';
+    $('wb-fill').style.width = '100%';
+    $('wb-cd').textContent   = '0';
+    return;
+  }
+  $('wb-week').textContent  = `第 ${info.week} 週`;
+  $('wb-day').textContent   = `第 ${info.dayOfWeek} 天`;
+  $('wb-pct').textContent   = `${info.pct}%`;
+  $('wb-fill').style.width  = `${info.pct}%`;
+  $('wb-cd').textContent    = info.cdDays;
+}
+
+// ── Timeline ──
+function renderTimeline() {
+  const { week: cur } = weekInfo();
+  const grid = $('tl-grid');
+  grid.innerHTML = '';
+  for (let w = 1; w <= TOTAL_WKS; w++) {
+    const isCur  = w === cur;
+    const isPast = w < (cur || 0);
+    const isMs   = !!MS_WEEKS[w];
+    const info   = weekInfo();
+    const fillW  = isCur
+      ? `${((info.dayOfWeek - 1) / 7) * 100}%`
+      : isPast ? '100%' : '0%';
+    const cell = document.createElement('div');
+    cell.className = `tl-cell ${isCur ? 'current' : isPast ? 'past' : 'future'}${isMs ? ' ms' : ''}`;
+    cell.innerHTML = `
+      <div class="tl-bar"><div class="tl-bar-fill" style="width:${fillW}"></div></div>
+      <div class="tl-wlabel">${MS_WEEKS[w] || 'W'+w}</div>`;
+    grid.appendChild(cell);
+  }
+}
+
+// ── Teams ──
+function renderTeams(issues) {
+  const grid = $('teams-grid');
+  grid.innerHTML = '';
+  const info  = weekInfo();
+  const curWk = info.week ? `W${info.week}` : null;
+
+  for (const [tid, team] of Object.entries(TEAMS)) {
+    const tIssues = issues.filter(i => issueTeam(i) === tid);
+    const open    = tIssues.filter(i => i.state === 'open');
+    const closed  = tIssues.filter(i => i.state === 'closed');
+    const blocked = open.filter(isBlocked);
+    const thisWk  = curWk ? open.filter(i => labels(i).includes(curWk)) : [];
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const recentIssues = open.slice(0, 8);
+    const issueHTML = recentIssues.length === 0
+      ? `<div class="loading-text">暫無進行中任務</div>`
+      : recentIssues.map(i => {
+          const wk  = issueWeek(i);
+          const lbs = labels(i).filter(l => !l.startsWith('team:') && l !== wk).slice(0,3);
+          return `
+            <a class="issue-item" href="${i.html_url}" target="_blank" rel="noopener">
+              <span class="issue-num">#${i.number}</span>
+              <div class="issue-body">
+                <div class="issue-title-text">${i.title}</div>
+                <div class="chips">
+                  ${wk ? `<span class="chip week">${wk}</span>` : ''}
+                  ${lbs.map(l => `<span class="chip">${l}</span>`).join('')}
+                  ${isBlocked(i) ? `<span class="chip blocked">卡關</span>` : ''}
+                </div>
+              </div>
+            </a>`;
+        }).join('');
+
+    card.innerHTML = `
+      <div class="team-card-header">
+        <div class="team-display-name">${team.display_name}</div>
+        <div class="team-label-id">${tid}</div>
+      </div>
+      <div class="team-stats">
+        <div class="stat"><div class="stat-lbl">本週</div><div class="stat-val">${thisWk.length}</div></div>
+        <div class="stat"><div class="stat-lbl">進行中</div><div class="stat-val">${open.length}</div></div>
+        <div class="stat"><div class="stat-lbl">已完成</div><div class="stat-val ok">${closed.length}</div></div>
+        <div class="stat"><div class="stat-lbl">卡關</div><div class="stat-val ${blocked.length?'warn':''}">${blocked.length}</div></div>
+      </div>
+      <div class="issue-list">${issueHTML}</div>
+      <div class="team-card-footer">
+        <div class="avatars">
+          ${team.members.map(m => {
+            const ini = m.github.replace('@','').slice(0,2).toUpperCase();
+            return `<div class="avatar" title="${m.github} · ${m.role}">${ini}</div>`;
+          }).join('')}
+        </div>
+        <a class="card-link" href="${team.link}">組別頁面 →</a>
+      </div>`;
+    grid.appendChild(card);
+  }
+}
+
+// ── Calendar ──
+function buildCalendar(year, month, issues) {
+  const issueDates = {};
+  issues.forEach(i => {
+    const d  = new Date(new Date(i.created_at).toLocaleString('en-US', { timeZone: 'Asia/Taipei' }));
+    if (d.getFullYear() === year && d.getMonth() === month) {
+      const day = d.getDate();
+      const t   = issueTeam(i);
+      if (!issueDates[day]) issueDates[day] = new Set();
+      if (t) issueDates[day].add(t);
+    }
+  });
+
+  const todayTW  = tw();
+  const todayD   = (todayTW.getFullYear() === year && todayTW.getMonth() === month) ? todayTW.getDate() : -1;
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMo = new Date(year, month + 1, 0).getDate();
+  const prevDays = new Date(year, month, 0).getDate();
+
+  const dayNames = ['日','一','二','三','四','五','六'];
+  let cells = dayNames.map(d => `<div class="cal-dname">${d}</div>`).join('');
+
+  for (let i = firstDay - 1; i >= 0; i--)
+    cells += `<div class="cal-day other-month"><div class="cal-day-num">${prevDays - i}</div></div>`;
+
+  for (let d = 1; d <= daysInMo; d++) {
+    const teams   = issueDates[d];
+    const hasDots = teams && teams.size > 0;
+    cells += `
+      <div class="cal-day${d===todayD?' today':''}${hasDots?' has-issues':''}">
+        <div class="cal-day-num">${d}</div>
+        ${hasDots ? `<div class="cal-dots">${[...teams].map(t=>`<div class="cal-dot ${t.replace(':','-')}"></div>`).join('')}</div>` : ''}
+      </div>`;
+  }
+
+  const total = Math.ceil((firstDay + daysInMo) / 7) * 7;
+  for (let i = firstDay + daysInMo, a = 1; i < total; i++, a++)
+    cells += `<div class="cal-day other-month"><div class="cal-day-num">${a}</div></div>`;
+
+  const name = new Date(year, month).toLocaleString('zh-TW', { year:'numeric', month:'long' });
+  return { name, cells };
+}
+
+function renderCalendars(issues) {
+  const wrap = $('cal-wrap');
+  const now  = tw();
+  wrap.innerHTML = '';
+  for (let offset = 0; offset <= 1; offset++) {
+    const d  = new Date(now.getFullYear(), now.getMonth() + offset, 1);
+    const { name, cells } = buildCalendar(d.getFullYear(), d.getMonth(), issues);
+    const card = document.createElement('div');
+    card.className = 'card cal-card';
+    card.innerHTML = `
+      <div class="cal-month-nav"><div class="cal-month-name">${name}</div></div>
+      <div class="cal-grid">${cells}</div>`;
+    wrap.appendChild(card);
+  }
+}
+
+// ── Error ──
+function showError(msg) {
+  const b = $('error-box');
+  b.textContent = msg;
+  b.style.display = 'block';
+}
+
+// ── Load ──
+async function loadAll() {
+  $('error-box').style.display = 'none';
+  $('teams-grid').innerHTML = '<div class="loading-text">從 GitHub Issues 載入中⋯</div>';
+  renderWeekBanner();
+  renderTimeline();
+  try {
+    allIssues = await fetchAllIssues();
+    renderTeams(allIssues);
+    renderCalendars(allIssues);
+  } catch (e) {
+    showError(`GitHub API 錯誤：${e.message}。若為 rate limit，請填入 PAT。`);
+    renderTeams([]);
+    renderCalendars([]);
+  }
+}
+
+loadAll();
+</script>
+</body>
+</html>
