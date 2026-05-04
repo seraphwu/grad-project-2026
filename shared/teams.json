@@ -1,6 +1,7 @@
 {
   "_comment": "組別對照表:Label ID (內部) → 顯示名稱 (對外)。儀表板讀此檔取得組名。",
   "_principle": "新增組別請新增條目;改名只改 display_name,不要改 id。",
+  "_naming_rule": "github 欄位統一不帶 @ 前綴 (純 username),程式拼接時自己加 @。",
 
   "teams": {
     "team:a": {
@@ -10,7 +11,7 @@
       "topic": "TBD - 待填入專案主題",
       "members": [
         {
-          "github": "@aliceyyjweb",
+          "github": "aliceyyjweb",
           "role": "PM"
         },
         {
@@ -18,15 +19,15 @@
           "role": "設計"
         },
         {
-          "github": "@katiewuhua",
+          "github": "katiewuhua",
           "role": "社群行銷公關"
         },
         {
-          "github": "@emily650359",
+          "github": "emily650359",
           "role": "社群行銷公關"
         },
         {
-          "github": "@yunyunyunyyyyy",
+          "github": "yunyunyunyyyyy",
           "role": "社群行銷公關"
         },
         {
@@ -44,23 +45,23 @@
       "topic": "TBD - 待填入專案主題",
       "members": [
         {
-          "github": "@hsiaoting0517",
+          "github": "hsiaoting0517",
           "role": "PM"
         },
         {
-          "github": "@Beckymiao",
+          "github": "Beckymiao",
           "role": "組員"
         },
         {
-          "github": "@yuqing915",
+          "github": "yuqing915",
           "role": "組員"
         },
         {
-          "github": "@weihsien0820",
+          "github": "weihsien0820",
           "role": "組員"
         },
         {
-          "github": "@NINCHANG",
+          "github": "NINCHANG",
           "role": "組員"
         }
       ],

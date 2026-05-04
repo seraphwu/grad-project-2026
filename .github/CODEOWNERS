@@ -9,22 +9,22 @@
 #   team:b  →  Diula
 #
 # 使用方式:
-# 1. 把下方的 @advisor-username 換成你的 GitHub 帳號
+# 1. 把下方的 @seraphwu 換成你的 GitHub 帳號
 # 2. 把各組的 @組員1 @組員2 等換成實際的學生 GitHub 帳號
 # 3. push 此檔到 .github/CODEOWNERS
 # =============================================================
 
 # 共用區僅老師可改
-/shared/         @advisor-username
-/advisor/        @advisor-username
-/.github/        @advisor-username
+/shared/         @seraphwu
+/advisor/        @seraphwu
+/.github/        @seraphwu
 
 # README 與根目錄文件僅老師可改
-/README.md       @advisor-username
-/LICENSE         @advisor-username
+/README.md       @seraphwu
+/LICENSE         @seraphwu
 
 # A 組 - MapMo
-/teams/team-a/   @advisor-username @alice-github @bob-github @chen-github
+/teams/team-a/   @seraphwu @alice-github @bob-github @chen-github
 
 # B 組 - Diula
-/teams/team-b/   @advisor-username @dave-github @emma-github @frank-github
+/teams/team-b/   @seraphwu @dave-github @emma-github @frank-github
