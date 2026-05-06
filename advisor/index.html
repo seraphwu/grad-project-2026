@@ -13,6 +13,77 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="畢製管理">
 <link rel="apple-touch-icon" href="../shared/icons/icon-192.png">
+
+<style>
+/* ── Milestones 區塊（advisor 專用） ── */
+.ms-list { display: flex; flex-direction: column; }
+.ms-item {
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--border-light);
+  display: grid;
+  grid-template-columns: 60px 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+}
+.ms-item:last-child { border-bottom: none; }
+.ms-item.past    { opacity: .55; }
+.ms-item.current { background: var(--surface-2); }
+.ms-title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.ms-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ms-due {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+.ms-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 110px;
+}
+.ms-progress-track {
+  width: 60px;
+  height: 2px;
+  background: var(--border-light);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.ms-progress-fill {
+  height: 100%;
+  background: var(--text-muted);
+  border-radius: 1px;
+}
+.ms-progress-num {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+.ms-tag {
+  font-size: 9px;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.ms-tag.now { color: var(--text); border-color: var(--text); }
+.ms-tag.done { color: var(--ok); border-color: #7cbf9e; background: var(--ok-bg); }
+
+@media (max-width: 700px) {
+  .ms-item { grid-template-columns: 1fr; gap: 4px; }
+  .ms-desc { white-space: normal; }
+}
+</style>
 </head>
 <body>
 
@@ -73,13 +144,18 @@
   </div>
 
   <div class="card timeline-wrap" style="margin-bottom:20px;">
-    <div class="section-label">12 週時間軸</div>
+    <div class="section-label">45 週時間軸</div>
     <div class="tl-grid" id="tl-grid" style="--tl-cols:45"></div>
   </div>
 
   <div class="section-label">各組狀態</div>
   <div class="teams-grid" id="teams-grid">
     <div class="loading-text">從 GitHub Issues 載入中⋯</div>
+  </div>
+
+  <div class="section-label">Milestones</div>
+  <div class="card" id="ms-card" style="margin-bottom:20px;">
+    <div class="loading-text">從 GitHub 載入 milestones⋯</div>
   </div>
 
   <div class="section-label">行事曆</div>
@@ -97,32 +173,40 @@ const OUTER_SHOW = new Date('2026-12-04T23:59:59+08:00'); // 校外展
 const TOTAL_WKS  = 45;
 const MS_WEEKS  = { 34: '校內展', 41: '校外展' };
 
-const TEAMS = {
-  'team:a': {
-    display_name: 'MapMo', slug: 'mapmo',
-    members: [
-      { github: '@alice-github', role: '組長' },
-      { github: '@bob-github',   role: '組員' },
-      { github: '@chen-github',  role: '組員' },
-    ],
-    link: '../teams/team-a/'
-  },
-  'team:b': {
-    display_name: 'Diula', slug: 'diula',
-    members: [
-      { github: '@dave-github',  role: '組長' },
-      { github: '@emma-github',  role: '組員' },
-      { github: '@frank-github', role: '組員' },
-    ],
-    link: '../teams/team-b/'
-  }
-};
+// TEAMS 從 shared/teams.json 載入；fallback 萬一 fetch 失敗才用空物件
+let TEAMS = {};
 
 let ghToken  = localStorage.getItem('gh_pat') || '';
 let allIssues = [];
 
 const $  = id => document.getElementById(id);
 const tw = () => new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Taipei' }));
+
+// 把 role 規範成字串(可能是 string 或 array)
+function roleToText(role) {
+  if (Array.isArray(role)) return role.join(' / ');
+  return role || '';
+}
+
+// 把 github username 規範成 @xxx 格式 (teams.json 不帶 @)
+function ghHandle(github) {
+  if (!github) return '';
+  return github.startsWith('@') ? github : '@' + github;
+}
+
+async function loadTeams() {
+  try {
+    const res = await fetch('../shared/teams.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    // schema: { teams: { 'team:a': {...}, 'team:b': {...} } }
+    TEAMS = data.teams || {};
+  } catch (e) {
+    console.warn('[teams.json] 載入失敗:', e.message);
+    showError(`teams.json 載入失敗（${e.message}）。各組狀態無法顯示。`);
+    TEAMS = {};
+  }
+}
 
 function weekInfo() {
   const now  = tw();
@@ -163,6 +247,11 @@ async function fetchAllIssues() {
     page++;
   }
   return acc;
+}
+
+async function fetchMilestones() {
+  // GitHub API 一頁最多 100,通常 milestones 不會破百
+  return await ghFetch('milestones?state=all&per_page=100&sort=due_on&direction=asc');
 }
 
 const labels     = i => i.labels.map(l => l.name);
@@ -240,10 +329,17 @@ function renderTimeline() {
 function renderTeams(issues) {
   const grid = $('teams-grid');
   grid.innerHTML = '';
+
+  const teamEntries = Object.entries(TEAMS);
+  if (teamEntries.length === 0) {
+    grid.innerHTML = `<div class="loading-text">teams.json 沒有組別資料</div>`;
+    return;
+  }
+
   const info  = weekInfo();
   const curWk = info.week ? `W${info.week}` : null;
 
-  for (const [tid, team] of Object.entries(TEAMS)) {
+  for (const [tid, team] of teamEntries) {
     const tIssues = issues.filter(i => issueTeam(i) === tid);
     const open    = tIssues.filter(i => i.state === 'open');
     const closed  = tIssues.filter(i => i.state === 'closed');
@@ -273,9 +369,14 @@ function renderTeams(issues) {
             </a>`;
         }).join('');
 
+    // 組別頁面連結:用 folder 欄位(/teams/team-a/),從 advisor 出發要回上層
+    const teamLink = team.folder ? `..${team.folder}` : `../teams/${tid.replace(':','-')}/`;
+
+    const members = team.members || [];
+
     card.innerHTML = `
       <div class="team-card-header">
-        <div class="team-display-name">${team.display_name}</div>
+        <div class="team-display-name">${team.display_name || tid}</div>
         <div class="team-label-id">${tid}</div>
       </div>
       <div class="team-stats">
@@ -287,15 +388,89 @@ function renderTeams(issues) {
       <div class="issue-list">${issueHTML}</div>
       <div class="team-card-footer">
         <div class="avatars">
-          ${team.members.map(m => {
-            const ini = m.github.replace('@','').slice(0,2).toUpperCase();
-            return `<div class="avatar" title="${m.github} · ${m.role}">${ini}</div>`;
+          ${members.map(m => {
+            const handle = ghHandle(m.github);
+            const ini = m.github ? m.github.slice(0, 2).toUpperCase() : '??';
+            const role = roleToText(m.role);
+            return `<div class="avatar" title="${handle} · ${role}">${ini}</div>`;
           }).join('')}
         </div>
-        <a class="card-link" href="${team.link}">組別頁面 →</a>
+        <a class="card-link" href="${teamLink}">組別頁面 →</a>
       </div>`;
     grid.appendChild(card);
   }
+}
+
+// ── Milestones ──
+function renderMilestones(milestones) {
+  const card = $('ms-card');
+  if (!milestones || milestones.length === 0) {
+    card.innerHTML = `<div class="loading-text">沒有 milestones</div>`;
+    return;
+  }
+
+  const now = tw();
+
+  // 排序:有 due_on 的依日期升冪,沒有的擺最後
+  const sorted = [...milestones].sort((a, b) => {
+    if (!a.due_on && !b.due_on) return 0;
+    if (!a.due_on) return 1;
+    if (!b.due_on) return -1;
+    return new Date(a.due_on) - new Date(b.due_on);
+  });
+
+  // 找「下一個未到期的」當作 current
+  let currentIdx = -1;
+  for (let i = 0; i < sorted.length; i++) {
+    const m = sorted[i];
+    if (m.state === 'open' && m.due_on && new Date(m.due_on) >= now) {
+      currentIdx = i;
+      break;
+    }
+  }
+
+  const html = sorted.map((m, idx) => {
+    const total  = (m.open_issues || 0) + (m.closed_issues || 0);
+    const closed = m.closed_issues || 0;
+    const pct    = total > 0 ? Math.round((closed / total) * 100) : 0;
+
+    const isClosed = m.state === 'closed';
+    const dueDate  = m.due_on ? new Date(m.due_on) : null;
+    const isPast   = dueDate && dueDate < now && !isClosed;
+    const isCur    = idx === currentIdx;
+
+    const cls = isClosed ? 'past' : isPast ? 'past' : isCur ? 'current' : '';
+
+    const dueText = dueDate
+      ? dueDate.toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })
+      : '無截止日';
+
+    const tag = isClosed
+      ? `<span class="ms-tag done">已關閉</span>`
+      : isCur
+      ? `<span class="ms-tag now">進行中</span>`
+      : isPast
+      ? `<span class="ms-tag" style="color:var(--warn);border-color:var(--warn-border)">已逾期</span>`
+      : `<span class="ms-tag">未開始</span>`;
+
+    const desc = m.description ? m.description.replace(/\n/g, ' ') : '—';
+
+    return `
+      <a class="ms-item ${cls}" href="${m.html_url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;">
+        <div class="ms-title">${m.title}</div>
+        <div class="ms-desc">${desc}</div>
+        <div class="ms-progress">
+          <div class="ms-progress-track"><div class="ms-progress-fill" style="width:${pct}%"></div></div>
+          <span class="ms-progress-num">${closed}/${total}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="ms-due">${dueText}</span>
+          ${tag}
+        </div>
+      </a>`;
+  }).join('');
+
+  card.innerHTML = `<div class="ms-list">${html}</div>`;
 }
 
 // ── Calendar ──
@@ -368,16 +543,34 @@ function showError(msg) {
 async function loadAll() {
   $('error-box').style.display = 'none';
   $('teams-grid').innerHTML = '<div class="loading-text">從 GitHub Issues 載入中⋯</div>';
+  $('ms-card').innerHTML = '<div class="loading-text">從 GitHub 載入 milestones⋯</div>';
+
+  // teams.json 必先載入,後續 renderTeams 才有資料用
+  await loadTeams();
+
   renderWeekBanner();
   renderTimeline();
-  try {
-    allIssues = await fetchAllIssues();
+
+  // issues 跟 milestones 平行抓
+  const [issuesResult, msResult] = await Promise.allSettled([
+    fetchAllIssues(),
+    fetchMilestones()
+  ]);
+
+  if (issuesResult.status === 'fulfilled') {
+    allIssues = issuesResult.value;
     renderTeams(allIssues);
     renderCalendars(allIssues);
-  } catch (e) {
-    showError(`GitHub API 錯誤：${e.message}。若為 rate limit，請填入 PAT。`);
+  } else {
+    showError(`Issues API 錯誤：${issuesResult.reason.message}。若為 rate limit，請填入 PAT。`);
     renderTeams([]);
     renderCalendars([]);
+  }
+
+  if (msResult.status === 'fulfilled') {
+    renderMilestones(msResult.value);
+  } else {
+    $('ms-card').innerHTML = `<div class="loading-text">Milestones 載入失敗:${msResult.reason.message}</div>`;
   }
 }
 

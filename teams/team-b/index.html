@@ -3,15 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>畢製管理 · Diula</title>
+<title>畢製管理 · 組別頁</title>
 <link rel="stylesheet" href="../../shared/dashboard.css">
+
+<style>
+/* ── 成員列表 (組別頁專用) ── */
+.members-card { padding: 14px 18px; }
+.members-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+.member-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s;
+}
+.member-chip:hover { border-color: var(--text-muted); }
+.member-chip-avatar {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.member-chip-info { min-width: 0; flex: 1; }
+.member-chip-name {
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.member-chip-role {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── Milestones (簡化版,只顯示前 6 個) ── */
+.ms-mini-list { padding: 6px 0; }
+.ms-mini-item {
+  padding: 8px 18px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background .1s;
+}
+.ms-mini-item:last-child { border-bottom: none; }
+.ms-mini-item:hover { background: var(--surface-2); }
+.ms-mini-item.past { opacity: .55; }
+.ms-mini-title {
+  font-size: 11px;
+  font-weight: 500;
+  flex: 0 0 auto;
+  min-width: 36px;
+}
+.ms-mini-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ms-mini-due {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+</style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="header-brand">
     <span class="brand-name">畢製管理 2026</span>
-    <span class="brand-badge" id="hd-badge">Diula</span>
+    <span class="brand-badge" id="hd-badge">—</span>
   </div>
   <div class="header-meta">
     <span class="live-dot"></span>
@@ -23,7 +108,6 @@
 
 <main class="main">
 
-  
   <div class="token-bar" id="tok-bar" style="margin-bottom:20px;">
     <label>GitHub PAT</label>
     <input class="token-input" id="tok-input" type="password"
@@ -32,7 +116,7 @@
     <span class="rate-hint" id="rate-hint">—</span>
   </div>
 
-<div id="error-box" class="notice warn" style="display:none"></div>
+  <div id="error-box" class="notice warn" style="display:none"></div>
 
   <!-- Hero -->
   <div class="hero-team">
@@ -44,7 +128,7 @@
       </div>
     </div>
     <div class="hero-bottom">
-      <div class="hero-team-name" id="hero-tname">Diula</div>
+      <div class="hero-team-name" id="hero-tname">—</div>
       <div class="hero-prog-wrap">
         <div class="hero-prog-lbl">
           <span>進度</span>
@@ -53,6 +137,12 @@
         <div class="hero-track"><div class="hero-fill" id="hero-fill" style="width:0%"></div></div>
       </div>
     </div>
+  </div>
+
+  <!-- 組員 -->
+  <div class="section-label">組員</div>
+  <div class="card members-card" id="members-card" style="margin-bottom:20px;">
+    <div class="loading-text">載入中⋯</div>
   </div>
 
   <!-- 本週任務 -->
@@ -67,6 +157,12 @@
     <div class="loading-text">載入中⋯</div>
   </div>
 
+  <!-- Milestones -->
+  <div class="section-label">近期 Milestones</div>
+  <div class="card" id="ms-card" style="margin-bottom:20px;">
+    <div class="loading-text">載入中⋯</div>
+  </div>
+
   <!-- 行事曆 -->
   <div class="section-label">本月行事曆</div>
   <div class="cal-wrap" id="cal-wrap" style="grid-template-columns:1fr;"></div>
@@ -75,9 +171,7 @@
   <div class="section-label">週進度回報</div>
   <div class="card progress-card">
     <p>每週請在 GitHub Issues 填寫進度回報。點下方按鈕開啟回報表單。</p>
-    <a class="report-btn" id="report-btn"
-       href="https://github.com/seraphwu/grad-project-2026/issues/new?template=progress.yml&labels=team%3Ab"
-       target="_blank" rel="noopener">
+    <a class="report-btn" id="report-btn" href="#" target="_blank" rel="noopener">
       填寫本週進度回報 →
     </a>
   </div>
@@ -85,23 +179,58 @@
 </main>
 
 <script>
-// ── 設定（team-b 專用）────────────────────────────────────────
-const TEAM_ID    = 'team:b';
-const TEAM_NAME  = 'Diula';
-const OWNER      = 'seraphwu';
-const REPO       = 'grad-project-2026';
-const START      = new Date('2026-02-23T00:00:00+08:00');
-const END        = new Date('2027-01-03T23:59:59+08:00');
-const TOTAL_WKS  = 45;
+// ────────────────────────────────────────────────────────────
+// 此頁專屬常數:組 ID。其餘設定全部從 teams.json 載入。
+// ────────────────────────────────────────────────────────────
+const TEAM_ID = 'team:b';
 
-const MEMBERS = [
-  { github: '@dave-github', role: '組長' },
-  { github: '@emma-github',   role: '組員' },
-  { github: '@frank-github',  role: '組員' },
-];
+// ── 系統共用設定 ──
+const OWNER     = 'seraphwu';
+const REPO      = 'grad-project-2026';
+const START     = new Date('2026-02-23T00:00:00+08:00');
+const END       = new Date('2027-01-03T23:59:59+08:00');
+const TOTAL_WKS = 45;
+
+// 組資訊由 loadTeam() 填入
+let TEAM_NAME = '';
+let MEMBERS   = [];
 
 const $ = id => document.getElementById(id);
 const tw = () => new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Taipei' }));
+
+function roleToText(role) {
+  if (Array.isArray(role)) return role.join(' / ');
+  return role || '';
+}
+function ghHandle(github) {
+  if (!github) return '';
+  return github.startsWith('@') ? github : '@' + github;
+}
+
+async function loadTeam() {
+  try {
+    const res = await fetch('../../shared/teams.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const team = data.teams && data.teams[TEAM_ID];
+    if (!team) throw new Error(`teams.json 中找不到 ${TEAM_ID}`);
+    TEAM_NAME = team.display_name || TEAM_ID;
+    MEMBERS   = team.members || [];
+
+    // 更新 DOM 上跟組相關的東西
+    document.title = `畢製管理 · ${TEAM_NAME}`;
+    $('hd-badge').textContent = TEAM_NAME;
+    $('hero-tname').textContent = TEAM_NAME;
+
+    // 進度回報按鈕的 label 參數
+    const labelParam = encodeURIComponent(TEAM_ID);
+    $('report-btn').href =
+      `https://github.com/${OWNER}/${REPO}/issues/new?template=progress.yml&labels=${labelParam}`;
+  } catch (e) {
+    console.warn('[teams.json] 載入失敗:', e.message);
+    showError(`teams.json 載入失敗（${e.message}）。組別資訊無法顯示。`);
+  }
+}
 
 function weekInfo() {
   const now  = tw();
@@ -124,10 +253,10 @@ function applyToken() {
   loadAll();
 }
 if (ghToken) {
-  // 頁面載入時若有 token，填入欄位並顯示狀態
   document.addEventListener('DOMContentLoaded', () => {
     const el = $('tok-input');
     if (el) el.value = ghToken;
+    $('rate-hint').textContent = 'PAT 已套用';
   });
 }
 
@@ -154,6 +283,10 @@ async function fetchTeamIssues() {
   return acc;
 }
 
+async function fetchMilestones() {
+  return await ghFetch('milestones?state=all&per_page=100&sort=due_on&direction=asc');
+}
+
 const labels    = i => i.labels.map(l => l.name);
 const issueWeek = i => labels(i).find(l => /^W\d+$/.test(l)) || null;
 const isBlocked = i => labels(i).includes('status:blocked');
@@ -171,7 +304,7 @@ updateClock();
 // ── Hero ──
 function renderHero() {
   const info = weekInfo();
-  $('hero-tname').textContent = TEAM_NAME;
+  $('hero-tname').textContent = TEAM_NAME || TEAM_ID;
 
   if (info.before) {
     $('hero-wnum').textContent = '—';
@@ -189,6 +322,32 @@ function renderHero() {
   $('hero-day').textContent   = `第 ${info.week} 週 · 第 ${info.dayOfWeek} 天`;
   $('hero-pct').textContent   = `${info.pct}%`;
   $('hero-fill').style.width  = `${info.pct}%`;
+}
+
+// ── Members ──
+function renderMembers() {
+  const card = $('members-card');
+  if (!MEMBERS || MEMBERS.length === 0) {
+    card.innerHTML = `<div class="loading-text">尚未設定組員</div>`;
+    return;
+  }
+  card.innerHTML = `
+    <div class="members-list-grid">
+      ${MEMBERS.map(m => {
+        const handle = ghHandle(m.github);
+        const ini    = m.github ? m.github.slice(0, 2).toUpperCase() : '??';
+        const role   = roleToText(m.role) || '組員';
+        const url    = m.github ? `https://github.com/${m.github.replace('@','')}` : '#';
+        return `
+          <a class="member-chip" href="${url}" target="_blank" rel="noopener">
+            <div class="member-chip-avatar">${ini}</div>
+            <div class="member-chip-info">
+              <div class="member-chip-name">${handle}</div>
+              <div class="member-chip-role">${role}</div>
+            </div>
+          </a>`;
+      }).join('')}
+    </div>`;
 }
 
 // ── Issue card HTML ──
@@ -245,7 +404,6 @@ function renderAllWeeks(issues) {
   const wrap = $('all-weeks-wrap');
   const info = weekInfo();
 
-  // 按週分組
   const byWeek = {};
   issues.forEach(i => {
     const w = issueWeek(i) || 'no-week';
@@ -253,7 +411,6 @@ function renderAllWeeks(issues) {
     byWeek[w].push(i);
   });
 
-  // 排序：有週號的先，依週號降序（最新在前），no-week 最後
   const weekKeys = Object.keys(byWeek)
     .filter(k => k !== 'no-week')
     .sort((a, b) => {
@@ -284,6 +441,42 @@ function renderAllWeeks(issues) {
         </div>
       </div>`;
   }).join('');
+}
+
+// ── Milestones (簡化版,只顯示「未來/進行中」最近 6 個) ──
+function renderMilestones(milestones) {
+  const card = $('ms-card');
+  if (!milestones || milestones.length === 0) {
+    card.innerHTML = `<div class="loading-text">沒有 milestones</div>`;
+    return;
+  }
+  const now = tw();
+  const sorted = [...milestones].sort((a, b) => {
+    if (!a.due_on && !b.due_on) return 0;
+    if (!a.due_on) return 1;
+    if (!b.due_on) return -1;
+    return new Date(a.due_on) - new Date(b.due_on);
+  });
+
+  // 只取「還沒到期」或「最後幾個」: 顯示前後各 6 個共 6 個
+  const upcoming = sorted.filter(m => !m.due_on || new Date(m.due_on) >= now).slice(0, 6);
+  const display = upcoming.length > 0 ? upcoming : sorted.slice(-6);
+
+  card.innerHTML = `<div class="ms-mini-list">${display.map(m => {
+    const dueDate = m.due_on ? new Date(m.due_on) : null;
+    const isPast  = dueDate && dueDate < now && m.state !== 'closed';
+    const dueText = dueDate
+      ? dueDate.toLocaleDateString('zh-TW', { month: 'numeric', day: 'numeric' })
+      : '—';
+    const desc = m.description ? m.description.replace(/\n/g, ' ') : '—';
+    return `
+      <a class="ms-mini-item ${m.state === 'closed' || isPast ? 'past' : ''}"
+         href="${m.html_url}" target="_blank" rel="noopener">
+        <div class="ms-mini-title">${m.title}</div>
+        <div class="ms-mini-desc">${desc}</div>
+        <div class="ms-mini-due">${dueText}</div>
+      </a>`;
+  }).join('')}</div>`;
 }
 
 // ── Calendar ──
@@ -332,20 +525,41 @@ function renderCalendar(issues) {
     </div>`;
 }
 
+// ── Error ──
+function showError(msg) {
+  const b = $('error-box');
+  b.textContent = msg;
+  b.style.display = 'block';
+}
+
 // ── Load ──
 async function loadAll() {
+  $('error-box').style.display = 'none';
+
+  await loadTeam();
   renderHero();
-  try {
-    const issues = await fetchTeamIssues();
+  renderMembers();
+
+  const [issuesResult, msResult] = await Promise.allSettled([
+    fetchTeamIssues(),
+    fetchMilestones()
+  ]);
+
+  if (issuesResult.status === 'fulfilled') {
+    const issues = issuesResult.value;
     renderThisWeek(issues);
     renderAllWeeks(issues);
     renderCalendar(issues);
-  } catch (e) {
-    const b = $('error-box');
-    b.textContent = `GitHub API 錯誤：${e.message}`;
-    b.style.display = 'block';
+  } else {
+    showError(`GitHub API 錯誤：${issuesResult.reason.message}`);
     $('this-week-card').innerHTML = `<div class="loading-text">載入失敗</div>`;
     $('all-weeks-wrap').innerHTML = `<div class="loading-text">載入失敗</div>`;
+  }
+
+  if (msResult.status === 'fulfilled') {
+    renderMilestones(msResult.value);
+  } else {
+    $('ms-card').innerHTML = `<div class="loading-text">Milestones 載入失敗</div>`;
   }
 }
 
