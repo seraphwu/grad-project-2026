@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: 💬 一般討論 (非任務)
-    url: https://github.com/YOUR_ORG/YOUR_REPO/discussions
+    url: https://github.com/seraphwu/grad-project-2026/discussions/
     about: 不是任務、不是 Bug、不是求助,只是想討論的事 (請先在 Settings 啟用 Discussions)
   - name: 📚 學生初始使用手冊
     url: https://github.com/seraphwu/grad-project-2026/blob/main/docs/manual-grad-system-day-one-setup.md
