@@ -1,5 +1,5 @@
 # 一次處理名單
-users=(aliceyyjweb jessica6817 katiewuhua emily650359 yunyunyunyyyyy hsiaoting0517 Beckymiao yuqing915 weihsien0820 NINCHANG)
+users=(aliceyyjweb jessica6817 katiewuhua emily650359 yunyunyunyyyyy hsiaoting0517 Beckymiao yuqing915 weihsien0820 NINCHANG youyiceng chen1an saamiin)
 
 for user in "${users[@]}"; do
   echo "Adding $user..."
