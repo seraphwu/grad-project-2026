@@ -1,4 +1,4 @@
-name: 🐛 Bug 回報 Mapmo
+name: 🐛 Bug 回報 - MapMo
 description: 系統 / 程式 / 設計檔案出錯,需要修正
 title: "[Bug][MapMo] "
 labels: ["type:bug", "team:a"]
