@@ -16,27 +16,27 @@
         },
         {
           "github": "jessica6817",
-          "role": "設計"
+          "role": ["沛綺","設計"]
         },
         {
           "github": "katiewuhua",
-          "role": "社群行銷公關"
+          "role": ["樺楦","社群行銷公關"]
         },
         {
           "github": "emily650359",
-          "role": "社群行銷公關"
+          "role": ["旻恩","社群行銷公關"]
         },
         {
           "github": "yunyunyunyyyyy",
-          "role": "社群行銷公關"
+          "role": ["云畇","社群行銷公關"]
         },
         {
           "github": "youyiceng",
-          "role": "社群行銷公關"
+          "role": ["宥頤","社群行銷公關"]
         },
         {
           "github": "chen1an",
-          "role": "前後端"
+          "role": ["奕安","前後端"]
         }
       ],
       "advisor_focus": "TBD - 介面流程",
@@ -50,27 +50,27 @@
       "members": [
         {
           "github": "hsiaoting0517",
-          "role": "PM"
+          "role": ["筱婷","PM"]
         },
         {
           "github": "Beckymiao",
-          "role": "組員"
+          "role": ["宜君","組員"]
         },
         {
           "github": "yuqing915",
-          "role": "組員"
+          "role": ["于晴","組員"]
         },
         {
           "github": "weihsien0820",
-          "role": "前後端"
+          "role": ["唯賢","前後端"]
         },
         {
           "github": "NINCHANG",
-          "role": "設計"
+          "role": ["祖寧","設計"]
         },
         {
           "github": "saamiin",
-          "role": "前後端"
+          "role": ["謝旻","前後端"]
         }
       ],
       "advisor_focus": "TBD - 你想對這組強調的指導重點",
