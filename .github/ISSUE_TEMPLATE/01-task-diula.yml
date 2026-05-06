@@ -1,24 +1,13 @@
-name: 📋 新增任務
-description: 開立一個需要完成的任務
-title: "[任務] "
-labels: ["type:task"]
+name: 📋 新增任務 - Diula (B 組)
+description: Diula 成員開任務用此表單
+title: "[任務][Diula] "
+labels: ["type:task", "team:b"]
 body:
   - type: markdown
     attributes:
       value: |
         ## 開立新任務
         填寫以下欄位後送出。送出後請到右側 Assignees 指派負責的組員、選擇對應的 Milestone (週次)。
-
-  - type: dropdown
-    id: team
-    attributes:
-      label: 組別
-      description: 這個任務屬於哪一組?
-      options:
-        - MapMo (team:a)
-        - Diula (team:b)
-    validations:
-      required: true
 
   - type: dropdown
     id: week
