@@ -12,7 +12,7 @@
       "members": [
         {
           "github": "aliceyyjweb",
-          "role": "PM"
+          "role": ["PM", "資料庫設計"]
         },
         {
           "github": "jessica6817",
@@ -33,6 +33,10 @@
         {
           "github": "youyiceng",
           "role": "社群行銷公關"
+        },
+        {
+          "github": "chen1an",
+          "role": "前後端"
         }
       ],
       "advisor_focus": "TBD - 介面流程",
@@ -58,11 +62,15 @@
         },
         {
           "github": "weihsien0820",
-          "role": "組員"
+          "role": "前後端"
         },
         {
           "github": "NINCHANG",
-          "role": "組員"
+          "role": "設計"
+        },
+        {
+          "github": "saamiin",
+          "role": "前後端"
         }
       ],
       "advisor_focus": "TBD - 你想對這組強調的指導重點",
