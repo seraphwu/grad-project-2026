@@ -106,7 +106,7 @@ body:
     id: deadline
     attributes:
       label: 預計完成日 (YYYY-MM-DD)
-      placeholder: 2026-05-08
+      placeholder: "2026-05-08"
     validations:
       required: true
 
