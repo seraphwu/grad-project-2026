@@ -89,6 +89,41 @@
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
 }
+
+/* ── Calendar: milestone 標示 ── */
+.cal-day.has-milestone { background: #fdecec; }
+.cal-day.has-milestone .cal-day-num {
+  color: #b03a3a;
+  font-weight: 600;
+}
+.cal-day.has-milestone:hover { background: #fbdcdc; }
+.cal-day.today.has-milestone {
+  background: var(--text);
+  outline: 1.5px solid #b03a3a;
+  outline-offset: -1.5px;
+}
+.cal-day.today.has-milestone .cal-day-num { color: #ffb4b4; }
+.cal-day.has-milestone.ms-past { background: transparent; }
+.cal-day.has-milestone.ms-past .cal-day-num {
+  color: var(--text-dim);
+  font-weight: 400;
+}
+.cal-ms-label {
+  position: absolute;
+  bottom: 2px;
+  left: 0; right: 0;
+  font-size: 8px;
+  color: #b03a3a;
+  text-align: center;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 2px;
+  pointer-events: none;
+}
+.cal-day.today.has-milestone .cal-ms-label { color: #ffb4b4; }
+.cal-day.has-milestone.ms-past .cal-ms-label { display: none; }
 </style>
 </head>
 <body>
@@ -480,7 +515,21 @@ function renderMilestones(milestones) {
 }
 
 // ── Calendar ──
-function renderCalendar(issues) {
+// 把 milestones 攤平成 { 'YYYY-MM-DD': [{title, isOpen}] }
+function indexMilestonesByDay(milestones) {
+  const map = {};
+  if (!milestones) return map;
+  for (const m of milestones) {
+    if (!m.due_on) continue;
+    const d = new Date(new Date(m.due_on).toLocaleString('en-US', { timeZone: 'Asia/Taipei' }));
+    const ymd = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    if (!map[ymd]) map[ymd] = [];
+    map[ymd].push({ title: m.title, isOpen: m.state === 'open' });
+  }
+  return map;
+}
+
+function renderCalendar(issues, milestones) {
   const wrap = $('cal-wrap');
   const now  = tw();
   const year = now.getFullYear();
@@ -495,6 +544,8 @@ function renderCalendar(issues) {
     }
   });
 
+  const msByDay = indexMilestonesByDay(milestones);
+
   const todayD   = now.getDate();
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMo = new Date(year, month + 1, 0).getDate();
@@ -508,10 +559,30 @@ function renderCalendar(issues) {
   for (let d = 1; d <= daysInMo; d++) {
     const cnt = issueDates[d] || 0;
     const dots = Math.min(cnt, 3);
+
+    const ymd = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayMs = msByDay[ymd] || [];
+    const hasMs = dayMs.length > 0;
+    const isPastDay = d < todayD;
+    const allClosed = dayMs.length > 0 && dayMs.every(m => !m.isOpen);
+    const msPast = hasMs && isPastDay && allClosed;
+
+    const msClasses = hasMs ? `has-milestone${msPast ? ' ms-past' : ''}` : '';
+    const msTitle = hasMs
+      ? dayMs.map(m => m.isOpen ? m.title : `${m.title} (已關閉)`).join('\n')
+      : '';
+    const titleAttr = msTitle ? ` title="${msTitle.replace(/"/g,'&quot;')}"` : '';
+    const msLabel = hasMs && !msPast
+      ? (dayMs.length > 1
+          ? `<div class="cal-ms-label">${dayMs[0].title} +${dayMs.length-1}</div>`
+          : `<div class="cal-ms-label">${dayMs[0].title}</div>`)
+      : '';
+
     cells += `
-      <div class="cal-day${d===todayD?' today':''}${cnt>0?' has-issues':''}">
+      <div class="cal-day${d===todayD?' today':''}${cnt>0?' has-issues':''}${msClasses?' '+msClasses:''}"${titleAttr} style="${hasMs ? 'position:relative;' : ''}">
         <div class="cal-day-num">${d}</div>
         ${dots > 0 ? `<div class="cal-dots">${'<div class="cal-dot"></div>'.repeat(dots)}</div>` : ''}
+        ${msLabel}
       </div>`;
   }
   const total = Math.ceil((firstDay + daysInMo) / 7) * 7;
@@ -545,22 +616,27 @@ async function loadAll() {
     fetchMilestones()
   ]);
 
+  let issues = [];
   if (issuesResult.status === 'fulfilled') {
-    const issues = issuesResult.value;
+    issues = issuesResult.value;
     renderThisWeek(issues);
     renderAllWeeks(issues);
-    renderCalendar(issues);
   } else {
     showError(`GitHub API 錯誤：${issuesResult.reason.message}`);
     $('this-week-card').innerHTML = `<div class="loading-text">載入失敗</div>`;
     $('all-weeks-wrap').innerHTML = `<div class="loading-text">載入失敗</div>`;
   }
 
+  let milestones = [];
   if (msResult.status === 'fulfilled') {
-    renderMilestones(msResult.value);
+    milestones = msResult.value;
+    renderMilestones(milestones);
   } else {
     $('ms-card').innerHTML = `<div class="loading-text">Milestones 載入失敗</div>`;
   }
+
+  // calendar 兩個都需要;即使一個失敗也要渲染(那邊會顯示空)
+  renderCalendar(issues, milestones);
 }
 
 loadAll();

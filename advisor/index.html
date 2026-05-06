@@ -83,6 +83,48 @@
   .ms-item { grid-template-columns: 1fr; gap: 4px; }
   .ms-desc { white-space: normal; }
 }
+
+/* ── Calendar: milestone 標示 ── */
+.cal-day.has-milestone {
+  background: #fdecec;
+}
+.cal-day.has-milestone .cal-day-num {
+  color: #b03a3a;
+  font-weight: 600;
+}
+.cal-day.has-milestone:hover { background: #fbdcdc; }
+/* today + milestone 重疊時:今天的深底為主,加紅色外框讓 milestone 仍可辨識 */
+.cal-day.today.has-milestone {
+  background: var(--text);
+  outline: 1.5px solid #b03a3a;
+  outline-offset: -1.5px;
+}
+.cal-day.today.has-milestone .cal-day-num { color: #ffb4b4; }
+/* 過去日期上的 milestone:全淡掉,不再警示 */
+.cal-day.has-milestone.ms-past {
+  background: transparent;
+}
+.cal-day.has-milestone.ms-past .cal-day-num {
+  color: var(--text-dim);
+  font-weight: 400;
+}
+/* milestone 小標(在格子下方) */
+.cal-ms-label {
+  position: absolute;
+  bottom: 2px;
+  left: 0; right: 0;
+  font-size: 8px;
+  color: #b03a3a;
+  text-align: center;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 2px;
+  pointer-events: none;
+}
+.cal-day.today.has-milestone .cal-ms-label { color: #ffb4b4; }
+.cal-day.has-milestone.ms-past .cal-ms-label { display: none; }
 </style>
 </head>
 <body>
@@ -474,7 +516,8 @@ function renderMilestones(milestones) {
 }
 
 // ── Calendar ──
-function buildCalendar(year, month, issues) {
+// milestonesByDay: { 'YYYY-MM-DD': [{ title, isOpen }, ...] }  由 renderCalendars 預先算好傳進來
+function buildCalendar(year, month, issues, milestonesByDay) {
   const issueDates = {};
   issues.forEach(i => {
     const d  = new Date(new Date(i.created_at).toLocaleString('en-US', { timeZone: 'Asia/Taipei' }));
@@ -501,10 +544,38 @@ function buildCalendar(year, month, issues) {
   for (let d = 1; d <= daysInMo; d++) {
     const teams   = issueDates[d];
     const hasDots = teams && teams.size > 0;
+
+    // 該日是否有 milestone
+    const ymd = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayMs = milestonesByDay[ymd] || [];
+    const hasMs = dayMs.length > 0;
+    // 「過去日期且該日 milestone 全部已關閉」→ 視為已過去,不警示
+    const isPastDay = todayD > 0 && d < todayD;
+    const allClosed = dayMs.length > 0 && dayMs.every(m => !m.isOpen);
+    const msPast = hasMs && isPastDay && allClosed;
+
+    const msClasses = hasMs
+      ? `has-milestone${msPast ? ' ms-past' : ''}`
+      : '';
+
+    // tooltip: 列出該日所有 milestone 標題
+    const msTitle = hasMs
+      ? dayMs.map(m => m.isOpen ? m.title : `${m.title} (已關閉)`).join('\n')
+      : '';
+    const titleAttr = msTitle ? ` title="${msTitle.replace(/"/g,'&quot;')}"` : '';
+
+    // 格子下方的 milestone 標籤(只顯示第一個,多個用「+N」表示)
+    const msLabel = hasMs && !msPast
+      ? (dayMs.length > 1
+          ? `<div class="cal-ms-label">${dayMs[0].title} +${dayMs.length-1}</div>`
+          : `<div class="cal-ms-label">${dayMs[0].title}</div>`)
+      : '';
+
     cells += `
-      <div class="cal-day${d===todayD?' today':''}${hasDots?' has-issues':''}">
+      <div class="cal-day${d===todayD?' today':''}${hasDots?' has-issues':''}${msClasses?' '+msClasses:''}"${titleAttr} style="${hasMs ? 'position:relative;' : ''}">
         <div class="cal-day-num">${d}</div>
         ${hasDots ? `<div class="cal-dots">${[...teams].map(t=>`<div class="cal-dot ${t.replace(':','-')}"></div>`).join('')}</div>` : ''}
+        ${msLabel}
       </div>`;
   }
 
@@ -516,13 +587,29 @@ function buildCalendar(year, month, issues) {
   return { name, cells };
 }
 
-function renderCalendars(issues) {
+// 把 milestones 攤平成 { 'YYYY-MM-DD': [{title, isOpen}, ...] }
+function indexMilestonesByDay(milestones) {
+  const map = {};
+  if (!milestones) return map;
+  for (const m of milestones) {
+    if (!m.due_on) continue;
+    // due_on 是 ISO 字串 (UTC),轉成台北時區的 YMD
+    const d = new Date(new Date(m.due_on).toLocaleString('en-US', { timeZone: 'Asia/Taipei' }));
+    const ymd = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    if (!map[ymd]) map[ymd] = [];
+    map[ymd].push({ title: m.title, isOpen: m.state === 'open' });
+  }
+  return map;
+}
+
+function renderCalendars(issues, milestones) {
   const wrap = $('cal-wrap');
   const now  = tw();
   wrap.innerHTML = '';
+  const msByDay = indexMilestonesByDay(milestones);
   for (let offset = 0; offset <= 1; offset++) {
     const d  = new Date(now.getFullYear(), now.getMonth() + offset, 1);
-    const { name, cells } = buildCalendar(d.getFullYear(), d.getMonth(), issues);
+    const { name, cells } = buildCalendar(d.getFullYear(), d.getMonth(), issues, msByDay);
     const card = document.createElement('div');
     card.className = 'card cal-card';
     card.innerHTML = `
@@ -560,18 +647,21 @@ async function loadAll() {
   if (issuesResult.status === 'fulfilled') {
     allIssues = issuesResult.value;
     renderTeams(allIssues);
-    renderCalendars(allIssues);
   } else {
     showError(`Issues API 錯誤：${issuesResult.reason.message}。若為 rate limit，請填入 PAT。`);
     renderTeams([]);
-    renderCalendars([]);
   }
 
+  let milestones = [];
   if (msResult.status === 'fulfilled') {
-    renderMilestones(msResult.value);
+    milestones = msResult.value;
+    renderMilestones(milestones);
   } else {
     $('ms-card').innerHTML = `<div class="loading-text">Milestones 載入失敗:${msResult.reason.message}</div>`;
   }
+
+  // calendar 需要 issues + milestones 都到位才畫
+  renderCalendars(allIssues || [], milestones);
 }
 
 loadAll();
