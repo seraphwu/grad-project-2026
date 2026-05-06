@@ -1,23 +1,13 @@
 name: 🐛 Bug 回報
 description: 系統 / 程式 / 設計檔案出錯,需要修正
-title: "[Bug] "
-labels: ["type:bug"]
+title: "[Bug][Diula] "
+labels: ["type:bug", "team:b"]
 body:
   - type: markdown
     attributes:
       value: |
         ## Bug 回報
         發現程式或設計檔案有問題時開立。如果是「想新增功能」請用「📋 新增任務」。
-
-  - type: dropdown
-    id: team
-    attributes:
-      label: 組別
-      options:
-        - MapMo (team:a)
-        - Diula (team:b)
-    validations:
-      required: true
 
   - type: dropdown
     id: severity

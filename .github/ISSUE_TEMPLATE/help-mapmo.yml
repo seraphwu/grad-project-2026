@@ -1,7 +1,7 @@
 name: 🆘 求助 / 卡關
 description: 卡關超過 1 天,需要組員或老師協助
-title: "[求助] "
-labels: ["type:help"]
+title: "[求助][MapMo] "
+labels: ["type:help", "team:a"]
 body:
   - type: markdown
     attributes:
@@ -11,16 +11,6 @@ body:
 
         - 求助組員:在右側 Assignees 指派該組員,他手機會收到推播
         - 求助老師:在 Assignees 加上老師,但**先試著自己解決或問組員**
-
-  - type: dropdown
-    id: team
-    attributes:
-      label: 組別
-      options:
-        - MapMo (team:a)
-        - Diula (team:b)
-    validations:
-      required: true
 
   - type: dropdown
     id: urgency

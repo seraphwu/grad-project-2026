@@ -1,0 +1,70 @@
+name: 🆘 求助 / 卡關
+description: 卡關超過 1 天,需要組員或老師協助
+title: "[求助][Diula] "
+labels: ["type:help", "team:b"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 求助原則
+        **卡關 1 天 = 開單**,不要硬撐三天才講。
+
+        - 求助組員:在右側 Assignees 指派該組員,他手機會收到推播
+        - 求助老師:在 Assignees 加上老師,但**先試著自己解決或問組員**
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: 緊急程度
+      options:
+        - 🔥 今天內需要回覆 (擋住其他工作)
+        - ⚡ 兩天內回覆即可
+        - 🌱 本週內回覆即可
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 我卡在哪?
+      description: 具體描述問題,而不是「我不會」這種空話
+      placeholder: |
+        例:
+        我在做登入功能,目標是讓使用者用 Google 帳號登入。
+        但 Firebase Auth 的 popup 視窗在 Safari 一直被擋,
+        嘗試切換到 redirect 模式後,登入完跳轉就無限迴圈。
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: 我已經嘗試過...
+      description: |
+        必填欄位。寫「我什麼都試過了」會被退件。
+        請列出具體嘗試的方法、查過的資料、問過的人。
+      placeholder: |
+        1. Google「Firebase auth Safari popup blocked」,
+           看了官方文件第 3 章,試了 onAuthStateChanged 仍無效
+        2. 問 ChatGPT,他建議改 redirect 模式,試了反而無限迴圈
+        3. 問組員 @xxx,他說他沒遇過
+        4. 在 Stack Overflow 找到一篇 [連結],
+           但用的是舊版 SDK,我們用 v9
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 相關連結 / 程式碼 / 截圖
+      description: 把相關資料貼上來,加快回覆速度
+      placeholder: |
+        - 程式碼:[GitHub 連結 / Gist]
+        - 錯誤截圖:(直接貼上)
+        - 相關 Issue:#12
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **送出後別忘了**:右側 Assignees 指派要求助的對象。

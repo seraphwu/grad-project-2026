@@ -1,0 +1,106 @@
+name: 📝 Diula 進度回報
+description: 每週回報進度 (建議週日晚上開立)
+title: "[進度][Diula] W"
+labels: ["type:progress", "team:b"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 週進度回報
+        每週結束時填寫。標題請補上週次,例:`[進度] W2`
+
+  - type: dropdown
+    id: week
+    attributes:
+      label: 回報週次
+      options:
+        - W01
+        - W02
+        - W03
+        - W04
+        - W05
+        - W06
+        - W07
+        - W08
+        - W09
+        - W10
+        - W11
+        - W12
+        - W13
+        - W14
+        - W15
+        - W16
+        - W17
+        - W18
+        - W19
+        - W20
+        - W21
+        - W22
+        - W23
+        - W24
+        - W25
+        - W26
+        - W27
+        - W28
+        - W29
+        - W30
+        - W31
+        - W32
+        - W33
+        - W34
+        - W35
+        - W36
+        - W37
+        - W38
+        - W39
+        - W40
+        - W41
+        - W42
+        - W43
+        - W44
+        - W45
+    validations:
+      required: true
+
+  - type: textarea
+    id: done
+    attributes:
+      label: 這週完成了什麼?
+      description: 具體列出本週的產出
+      placeholder: |
+        - 完成了 X 功能的 prototype
+        - 訪談了 3 位使用者
+        - 修正了 Y bug
+    validations:
+      required: true
+
+  - type: textarea
+    id: blocked
+    attributes:
+      label: 遇到什麼困難?
+      description: 卡關的地方,需要老師協助嗎?(沒有可填「無」)
+      placeholder: |
+        - 不確定 X 套件的 license 是否能商用
+        - 跟 Y 組有功能重疊,需要協調
+
+  - type: textarea
+    id: next
+    attributes:
+      label: 下週打算做什麼?
+      placeholder: |
+        - 完成 X 模組的 80%
+        - 舉辦第二輪使用者測試
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 其他想記錄的事 (選填)
+      placeholder: 心得、靈感、需要記錄的決策...
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        老師會在這個 issue 留言給回饋,記得查看通知。

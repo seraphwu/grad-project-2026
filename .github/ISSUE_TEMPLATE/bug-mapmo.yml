@@ -1,0 +1,79 @@
+name: 🐛 Bug 回報
+description: 系統 / 程式 / 設計檔案出錯,需要修正
+title: "[Bug][MapMo] "
+labels: ["type:bug", "team:a"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug 回報
+        發現程式或設計檔案有問題時開立。如果是「想新增功能」請用「📋 新增任務」。
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 嚴重程度
+      options:
+        - 🔴 Critical - 完全無法使用 / 阻擋其他工作
+        - 🟠 High - 主要功能異常,但有 workaround
+        - 🟡 Medium - 次要功能問題
+        - 🟢 Low - 視覺 / 文字小問題
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 預期行為
+      description: 應該要怎樣?
+      placeholder: 點擊登入按鈕後,跳轉到首頁
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 實際行為
+      description: 實際發生了什麼?
+      placeholder: 點擊登入按鈕後,畫面卡住,沒有任何反應
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 重現步驟
+      description: 怎麼讓 bug 再發生一次?
+      placeholder: |
+        1. 打開首頁
+        2. 點擊右上角「登入」
+        3. 輸入 email + 密碼
+        4. 點擊「送出」
+        5. 預期跳轉,實際卡住
+    validations:
+      required: true
+
+  - type: textarea
+    id: env
+    attributes:
+      label: 環境資訊
+      description: 在什麼裝置 / 瀏覽器 / 版本下發生?
+      placeholder: |
+        - 裝置:iPhone 14 / MacBook Pro M2
+        - 瀏覽器:Safari 17 / Chrome 120
+        - 系統:iOS 17.2 / macOS 14
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 截圖 / 錄影 (強烈建議)
+      description: 直接拖曳檔案到這裡上傳
+      placeholder: 拖曳截圖到這裡...
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **送出後別忘了**:右側 Assignees 指派負責修復的組員。

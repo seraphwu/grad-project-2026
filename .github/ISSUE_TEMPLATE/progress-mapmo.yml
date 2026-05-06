@@ -1,7 +1,7 @@
-name: 📝 進度回報
+name: 📝 Mapmo 進度回報
 description: 每週回報進度 (建議週日晚上開立)
-title: "[進度] W"
-labels: ["type:progress"]
+title: "[進度][MapMo] W"
+labels: ["type:progress", "team:a"]
 body:
   - type: markdown
     attributes:
@@ -10,29 +10,19 @@ body:
         每週結束時填寫。標題請補上週次,例:`[進度] W2`
 
   - type: dropdown
-    id: team
-    attributes:
-      label: 組別
-      options:
-        - MapMo (team:a)
-        - Diula (team:b)
-    validations:
-      required: true
-
-  - type: dropdown
     id: week
     attributes:
       label: 回報週次
       options:
-        - W1
-        - W2
-        - W3
-        - W4
-        - W5
-        - W6
-        - W7
-        - W8
-        - W9
+        - W01
+        - W02
+        - W03
+        - W04
+        - W05
+        - W06
+        - W07
+        - W08
+        - W09
         - W10
         - W11
         - W12
