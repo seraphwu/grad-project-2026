@@ -1,7 +1,6 @@
 # 畢業製作專案管理 - 學生操作手冊
 
-[第一步](https://github.com/seraphwu/grad-project-2026/blob/main/docs/manual-grad-system-day-one-setup.md)
-[使用手冊](https://github.com/seraphwu/grad-project-2026/blob/main/docs/manual-grad-system-student-handbook.md)
+[第一步](https://github.com/seraphwu/grad-project-2026/blob/main/docs/manual-grad-system-day-one-setup.md) | [使用手冊](https://github.com/seraphwu/grad-project-2026/blob/main/docs/manual-grad-system-student-handbook.md)
 
 > [!info] 你需要的能力
 > ✅ 會用網頁瀏覽器
