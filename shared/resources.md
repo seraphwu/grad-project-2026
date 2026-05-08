@@ -41,6 +41,7 @@
 
 - [MapMo Figma](https://figma.com/file/TODO) — 你們組的設計稿
 - [Mapbox Studio](https://studio.mapbox.com/) — 地圖樣式編輯
+- [MapMo 共用 Drive](https://github.com/seraphwu/markdown-collab/tree/main/workspaces/112/mapmo) — 文件與會議記錄
 
 ### 參考
 
@@ -56,7 +57,7 @@
 
 ### 工具
 
-- [Diula 共用 Drive](https://github.com/seraphwu/markdown-collab/tree/main/workspaces/112/diula) — 素材與會議記錄
+- [Diula 共用 Drive](https://github.com/seraphwu/markdown-collab/tree/main/workspaces/112/diula) — 文件與會議記錄
 
 ### 參考
 
