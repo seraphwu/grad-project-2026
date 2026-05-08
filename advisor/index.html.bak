@@ -744,52 +744,6 @@
       });
     }
   </script>
-<!-- ──────────── 資源列表(自動注入) ──────────── -->
-<style>
-  #resources-block { margin: 1.5rem 0; }
-  .res-section {
-    margin: 1rem 0;
-    padding: 1rem 1.25rem;
-    background: #fafafa;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
-  }
-  .res-section-title {
-    margin: 0 0 .5rem;
-    font-size: 15px; font-weight: 600;
-    color: #1a1a1a;
-  }
-  .res-category { margin: .5rem 0; }
-  .res-category-title {
-    margin: .75rem 0 .25rem;
-    font-size: 12px; font-weight: 600;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-  }
-  .res-list { margin: 0; padding-left: 1.25rem; }
-  .res-item { margin: .25rem 0; font-size: 14px; line-height: 1.6; }
-  .res-item a { color: #0969da; text-decoration: none; }
-  .res-item a:hover { text-decoration: underline; }
-  .res-desc { color: #666; font-size: 13px; }
-  .res-empty { color: #999; font-size: 14px; font-style: italic; }
-</style>
-
-<section style="max-width: 960px; margin: 1.5rem auto; padding: 0 1rem;">
-  <h2 style="margin:0 0 .5rem;">📚 資源列表</h2>
-  <div id="resources-block">載入中…</div>
-</section>
-
-<script src="../shared/resources.js"></script>
-<script>
-  loadResources({
-    container:    '#resources-block',
-    sections:     ['共用', 'team:a', 'team:b'],
-    teamsJsonUrl: '../shared/teams.json',
-    resourcesUrl: '../shared/resources.md'
-  });
-</script>
-<!-- ──────────── /資源列表 ──────────── -->
 </body>
 
 </html>

@@ -1,0 +1,2075 @@
+This file is a merged representation of a subset of the codebase, containing specifically included files, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Only files matching these patterns are included: **/*.md
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+01-20260226-class-intro.md
+02-20260305-audit.md
+03-20260312-brand-dna.md
+04-20260319-visual-sprint.md
+05-20260326-landing-page-stitch.md
+06-20260402-dayoff.md
+07-20260409-pitch-video-production.md
+08-20260416-digital-asset-super-sprint.md
+08-ICS-Brand-YAML-Example-Mapmo.md
+08-Spec-Brand-Guideline-Mapping.md
+08-supplementary-brand-yaml.md
+09-20260423-midterm-pitch-demo-day.md
+10-20260430-company-sim-and-money-map.md
+11-20260507-ip-protection-and-search.md
+11-supplement-ai-copyright-template.md
+README.md
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="01-20260226-class-intro.md">
+---
+marp: true
+theme: gaia
+paginate: true
+size: 16:9
+class: unlead
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.85em;
+    width: 100%;
+  }
+filename: 01-20260226-class-intro.md
+title: 01-課程導論：Re-boot 商業導論
+header: 114-2-資傳人才新創育成
+footer: 20260226
+date: 2026-02-26
+tags:
+  - marp
+  - lecture
+  - startup
+  - week01
+description: 資傳人才新創育成第一週課程簡報，包含課程心態、雙師規則與16週完整進度。
+status: active
+type: lecture
+project: 114-2-資傳人才新創育成
+area: SHU
+week: 1
+created: 2026-02-26T00:45:09
+updated: 2026-04-16T00:59:26
+---
+<!--_class: lead-->
+# 114-2 資傳人才新創育成
+## Week 01: Re-boot
+
+**授課教師**：吳林展 / 楊志宏
+
+---
+
+## Re-boot
+
+忘記你現在的身份，我們來做個設定：
+
+- 從今天起，你們是**共同創辦人 (Co-founders)**。
+- 我們這學期的唯一目標：**開公司，把作品變成「賣得掉的商品」。**
+
+---
+
+## 雙主軸
+
+本課程由兩位老師教授：
+
+1. **前半：品牌商用化**
+   - 品牌識別 (VI)、市場定位、行銷素材、Landing Page。
+   - 重點：把東西包裝得有 **「賣相」**。
+   
+2. **後半：找錢攻略與計畫書**
+   - 公司設立、SBIR 政府補助、智財權保護、財務報表。
+   - 重點：把商業模式變成真實的 **「現金流」**。
+
+---
+
+## 與「數位內容課」的區隔
+
+同時在修《數位內容與創新加值管理》：**我們要一魚兩吃。**
+
+| 數位內容與創新加值管理 | 資傳人才新創育成 (本課) |
+| :--- | :--- |
+| 探討創作哲學與設計思考 | 探討商業價值與獲利模式 |
+| 追求個人美學與敘事表達 | 追求對外溝通與說服投資人 |
+| **產出：** 內容原型 (Prototype) | **產出：** 商業品牌與募資計畫書 |
+
+👉 **策略：** 可以直接拿那邊產出的草案，來這邊進行「商業化包裝」！
+
+---
+
+## AI 融入
+
+我們不要求你死磕技術（但還是要記得學技術，這樣才可以表達）或會計基礎，而是要你專注於 **「商業決策」**。
+
+### **這是創業**
+
+---
+<!--_class: lead-->
+榨乾 Gemini 
+
+---
+
+## 課程進度 (一) ｜ 品牌包裝與商業識別
+
+**(Week 01 - 08)**，目標：打造讓市場買單的「賣相」
+
+|   週次    |  日期   | 階段主題                   | 任務重點              |
+| :-----: | :---: | :--------------------- | :---------------- |
+| **W01** | 02/26 | **Re-boot 商業導論**       | 建立公司協作平台          |
+| **W02** | 03/05 | **Audit 品牌資產盤點**       | 現有「商業價值」體檢        |
+| **W03** | 03/12 | **Brand DNA 品牌要素**     | 定義付費客戶、定位與品牌命名    |
+| **W04** | 03/19 | **Brand Guideline 手冊** | 制定 Logo 安全範圍與色彩規範 |
+
+---
+
+|   週次    |  日期   | 階段主題                 | 任務重點               |
+| :-----: | :---: | :------------------- | :----------------- |
+| **W05** | 03/26 | **Touchpoint 接觸點**   | Landing Page       |
+| **W06** | 04/02 | *Holiday 春假連假*       | *(自主調整品牌素材)*       |
+| **W07** | 04/09 | **Pitch Video 短片製作** | 將電梯簡報視覺化為商業廣告      |
+| **W08** | 04/16 | **期中：Brand Pitch**   | **正式簡報提案，說服天使投資人** |
+
+---
+
+## 課程進度 (二) ｜ 找錢攻略與計畫書
+
+**(Week 09 - 16)**，目標：接軌現實，獲取「資金」
+
+| 週次 | 日期 | 階段主題 | 任務重點 |
+| :---: | :---: | :--- | :--- |
+| **W09** | 04/23 | **Money Map 政府資源** | 拆解 SBIR 等補助案申請須知 |
+| **W10** | 04/30 | **Company Sim 大富翁** | 公司設立流程、名稱預查與營業項目 |
+| **W11** | 05/07 | **IP Protection 智財保護**| 商標與專利基礎，檢索實戰 |
+| **W12** | 05/14 | **Pricing 定價心理學** | 成本利潤計算與競品比價策略 |
+
+---
+
+|   週次    |  日期   | 階段主題                     | 任務重點                 |
+| :-----: | :---: | :----------------------- | :------------------- |
+| **W13** | 05/21 | **Financial Hacks 三表**   | 傻瓜填空 Excel：參數驅動預算編列  |
+| **W14** | 05/28 | **AI Proposal (I) 創新面**  | 將口語轉為「標案體」           |
+| **W15** | 06/04 | **AI Proposal (II) 效益面** | 預期效益與 KPI 設定，排版修飾    |
+| **W16** | 06/11 | **期末：Demo Day**          | **募資派對：商業可行性與財務總審查** |
+
+---
+
+## 成績評定
+
+這是一場商業模擬，你的成績取決於市場（老師）的買單程度：
+
+- **30% ｜ 出席與商業實作**
+  課堂 Workshop 產出（如品牌手冊、財務報表）。
+- **30% ｜ 期中品牌發表 (Week 08 - Brand Pitch)**
+  **Formal Pitch**。向天使投資人提案。
+- **40% ｜ 期末募資提案 (Week 16 - Demo Day)**
+  **募資派對**。林展＋志宏共同評比。重點在商業模式可行性與計畫書完整度。
+
+---
+
+## 本週任務
+
+**W 01：建立公司基礎設施**
+
+1. **確認團隊：** 決定你的初始團隊（沿用畢業專題或重組）。
+2. **建立基地：** 建立「公司雲端資料夾」與「專案協作平台」（如 Notion, Trello, Google Workspace）。
+3. **盤點：** 拿出現有的專題草案問自己：
+   * 你的作品，有人會付錢嗎？付多少？
+   * 你的目標客戶是誰？他現在用什麼替代方案？
+   * 你的作品和市面上的有什麼不一樣？
+
+---
+<!--_class: lead-->
+
+*下週預告：品牌資產盤點*
+
+---
+
+
+再一個 LINE 群組
+
+![width:400px](../../90_Meta/attachments/i-qrcode-startup.jpg)
+</file>
+
+<file path="02-20260305-audit.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.9em;
+    width: 100%;
+  }
+  .highlight {
+    color: #b30000;
+    font-weight: bold;
+  }
+filename: 02-20260305-audit-v1.md
+title: 02-品牌資產盤點：Audit
+date: 2026-03-04
+tags:
+  - marp
+  - lecture
+  - startup
+  - week02
+  - pmf
+description: 第二週簡報，引導學生檢視畢業專題的商業潛力，進行 Product-Market Fit 評估。
+status: active
+type: lecture
+project: 114-2-資傳人才新創育成
+area: SHU
+week: 2
+created: 2026-03-04T23:06:57
+updated: 2026-04-15T23:31:44
+---
+
+# 114-2 資傳人才新創育成
+## Week 02: Audit 品牌資產盤點
+
+**授課教師**：林展
+**日期**：2026 / 03 / 05
+
+---
+
+## 課前確認：基礎設施建立
+
+在上課前，請各團隊確認是否已完成上週的任務：
+
+1. **團隊編制確認**：共同創辦人到齊了嗎？
+2. **協作平台建立**：雲端資料夾、Notion 或 Trello 是否已經可以開始運作？
+
+如果還沒，請在今天下課前處理完畢。創業沒有人會等你。
+
+---
+
+## 本週核心：從「作業」到「產品」
+
+你們手上的畢業專題，目前大多處於「學生作業」的階段。
+今天的任務，是要把它放上手術台解剖，找出它的商業潛力。
+
+* **作業 (Project)**：為了滿足教授的要求，拿到學分。受眾是「評審」。
+* **商品 (Product)**：為了解決市場的問題，拿到營收。受眾是「消費者」。
+
+---
+
+## 殘酷體檢：你的東西賣得掉嗎？
+
+在我們開始包裝品牌之前，必須先確定核心產品是有價值的。
+請團隊誠實回答以下三個問題：
+
+1. **痛點真實性**：這個專題解決了一個真實存在的問題嗎？還是你們幻想出來的？
+2. **替代方案**：如果沒有你們的產品，消費者現在是怎麼解決這個問題的？你們有比現有方案更好嗎？
+3. **付費意願**：會有人願意為了這個解決方案掏出錢包嗎？
+
+---
+
+## 什麼是 PMF (Product-Market Fit)？
+
+**產品市場契合度 (Product-Market Fit)** 這意味著你身處在一個好市場中，並且你的產品能夠滿足該市場。
+
+* **沒有 PMF**：你用力推銷，但沒人理你。轉換率極低。
+* **達到 PMF**：客戶主動找上門，產品會自己賣自己，供不應求。
+
+我們這學期的目標，就是透過包裝與調整，讓你們的專題盡可能逼近 PMF。
+
+---
+
+## 課堂 Workshop：產品商業價值評估表
+https://docs.google.com/document/d/1RWRMW74RPtfr-opL8cakPltHKs9_Z2ZJmgmlu0ZSKlc/edit?usp=sharing
+現在，請各團隊開啟一份新的共用文件，完成以下矩陣評估：
+
+| 評估維度 | 學生作業思維 (現況) | 商業市場思維 (目標) | 調整策略 (How to pivot) |
+| :--- | :--- | :--- | :--- |
+| **目標受眾** | 教授、評審、同學 | 具體的付費客群輪廓 | |
+| **核心功能** | 展現技術與學習成果 | 解決受眾的特定痛點 | |
+| **視覺呈現** | 個人美學、實驗性質 | 建立信任感、符合商業規範 | |
+| **溝通語言** | 專有名詞、學術論述 | 效益導向、使用者聽得懂的話 | |
+
+*時間：30 分鐘討論與填寫。*
+
+---
+
+## (Pivot)：如果發現沒救怎麼辦？
+
+如果經過剛剛的體檢，發現原來的專題完全沒有商業化的可能？
+
+**那就改！**
+
+在精實創業中，這稱為 Pivot 。
+保留團隊的核心技術或部分點子，轉換到另一個更有市場潛力的方向。不要執著於沉沒成本。
+
+---
+
+## 本週任務 (Action Items)
+
+**HW 02：找出你們的 Brand DNA**
+
+下週我們將進入「品牌要素：定位與命名」。請各團隊在下週上課前完成：
+
+1. **確立最終產品方向**：根據今天的體檢結果，定調你們要推向市場的最終產品服務是什麼。
+2. **AI 命名發想**：利用 ChatGPT 或 Gemini，輸入你們的產品概念，請 AI 產出 **50 個**具有商業感的品牌名稱與 Slogan 備用。
+
+我們下週見。
+</file>
+
+<file path="03-20260312-brand-dna.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.9em;
+    width: 100%;
+  }
+  .highlight {
+    color: #b30000;
+    font-weight: bold;
+  }
+filename: 03-20260312-brand-dna-v1.md
+title: 03-品牌要素：定位與命名 (Brand DNA)
+date: 2026-03-11
+tags:
+  - marp
+  - lecture
+  - startup
+  - week03
+  - branding
+description: 第三週簡報，引導學生繪製市場定位圖、挑選商業命名並定義品牌黃金圈。
+status: active
+type: lecture
+project: 114-2-資傳人才新創育成
+area: SHU
+week: 3
+version: v1
+---
+
+# 114-2 資傳人才新創育成
+## Week 03: Brand DNA 品牌要素
+
+**授課教師**：林展
+**日期**：2026 / 03 / 12
+
+---
+
+## 課前回顧：從痛點出發
+
+進入品牌建立前，請各團隊確認以下 PMF 評估共識：
+
+1. **核心產品**：確切提供市場的產品或服務內容。
+2. **付費受眾**：明確定義願意付費的客群輪廓。
+3. **競爭對手**：市場上現有的替代方案與競品。
+4. **AI 命名發想**：已準備 50 個備選品牌名稱。
+
+明確戰場與受眾，品牌包裝才具備實質意義。
+
+---
+
+![bg  opacity:.3 市場定位圖](./i-w03-Positioning-Map.png)
+## 戰場座標：市場定位圖 (Positioning Map)
+
+品牌定位的首要任務是找出市場空缺。
+
+請繪製十字軸，並設定兩個對受眾最具影響力的決策變數。
+範例：
+* Y 軸：專業小眾 ⟷ 大眾標準化
+* X 軸：平價 ⟷ 高溢價
+
+**任務：將競品標示於座標上，並決定自身品牌切入的象限。**
+
+
+
+---
+
+## 收斂決策：商業命名篩選
+
+從 50 個品牌名稱中，依據以下商業標準進行篩選：
+
+1. **記憶成本**：易讀、易記，避免冷僻字與複雜拼音。
+2. **直覺聯想**：名稱需能反映產業特性或服務調性。
+3. **商標防禦**：具備獨特性，避免在搜尋引擎中被既有大品牌覆蓋。
+4. **諧音梗**：台灣人很愛，但請轉換成拼音力求國際化。
+
+**任務：刪除缺乏記憶點的名稱，收斂至 3 個決選名單。**
+
+---
+
+## 品牌核心：黃金圈法則 (The Golden Circle)
+
+消費者購買的往往不是產品本身，而是品牌背後的理念。
+
+![bg right 黃金圈法則](./i-w03-Golden-Circle.png)
+
+* **WHY (為什麼)**：品牌的核心信念與存在目的。
+* **HOW (怎麼做)**：獨特賣點 (USP) 或不公平優勢。
+* **WHAT (做什麼)**：具體的產品或服務。
+
+**卓越品牌從 Why 開始溝通，多數品牌從 What 進行推銷。**
+
+---
+
+![](https://img.youtube.com/vi/0c80RLWvKpI/maxresdefault.jpg)
+https://youtu.be/0c80RLWvKpI
+
+---
+
+![bg right 50%](i-w03-qrcode-brand-dna-form.png)
+## 課堂 Workshop：萃取 Brand DNA
+
+請各團隊於 40 分鐘內完成以下品牌基礎架構：
+
+1. **繪製定位圖**：定義 X、Y 軸，標示 3 個競品與自身位置。
+2. **確立品牌名稱與 Slogan**：選定中/英文品牌名，並擬定 15 字內的 Slogan。
+3. **定義黃金圈**：分別以簡練的敘述寫下品牌的 Why、How、What。
+
+完成後，各組將進行 2 分鐘電梯簡報 (Elevator Pitch) 說明品牌 DNA。
+
+---
+
+## 本週任務 (Action Items)
+
+**HW 03：品牌識別前期準備 (Brand Guideline)**
+
+為下週的品牌視覺化與識別規範制定做準備：
+
+1. **情緒板 (Moodboard) 收集**：利用 Pinterest 收集符合 Brand DNA 調性的色彩、字體與影像風格（至少 15 張圖）。
+2. **AI Logo 草圖生成**：使用 Midjourney 或 Recraft 生成品牌 Logo 草圖，下週課堂將進行收斂與規範化。
+
+---
+
+**這不是數位影像處理/數位圖像製作實務**
+Canva 很棒:
+moodboard https://www.canva.com/zh_tw/create/mood-boards/?msockid=17bc0112983c654916a4178d998864a5
+</file>
+
+<file path="04-20260319-visual-sprint.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.9em;
+    width: 100%;
+  }
+  .highlight {
+    color: #b30000;
+    font-weight: bold;
+  }
+filename: 04-20260319-visual-sprint-v3.md
+title: 04-視覺衝刺：AI Logo 與品牌規範
+date: 2026-03-19
+tags:
+  - marp
+  - lecture
+  - startup
+  - week04
+  - branding
+description: 第四週簡報，帶領學生從品牌名稱出發，使用 AI 生成 Logo 並建立品牌視覺規範。
+status: active
+type: lecture
+project: 114-2-資傳人才新創育成
+area: SHU
+week: 4
+updated: 2026-03-19T01:59:00
+version: v3
+---
+
+![bg left:45%](https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop)
+
+# 114-2 資傳人才新創育成
+
+## Week 04: Visual Sprint 視覺衝刺
+
+**授課教師**：林展
+**日期**：2026 / 03 / 19
+
+---
+
+## 課前回顧
+
+上週我們確立了品牌 DNA：
+絕大多數團隊已經擁有明確的市場定位、黃金圈，以及決選的品牌名稱。
+
+**【上週缺席團隊】**
+接下來 15 分鐘內，使用 AI 輸入你們的產品核心理念，決定出 1 個。沒有名字，今天無法進行視覺化。
+
+其他團隊，我們準備開始進行 Brand Guideline。
+
+---
+
+![bg right:40%](https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=1600&auto=format&fit=crop)
+
+## 本週：<br>Brand Guideline (品牌規範) onepage 版
+
+為什麼新創公司需要 Guideline？
+確保未來無論是誰負責發文、架設網站或製作簡報，對外呈現的視覺風格都高度一致。
+
+一份最基礎的商業 Guideline 必須包含：
+
+- **Logo (標誌)**：主視覺圖形。
+- **Color Palette (色彩計畫)**：主色與輔助色 (精確的 HEX 色碼)。
+- **Typography (字體規範)**：標題與內文的指定字體。
+
+---
+
+## Step 1: AI Logo 提示詞實戰 (Prompting) 1/2
+
+我們不從草稿開始畫，直接讓 AI 提案。
+
+**Midjourney / Recraft ver.**
+請打開 Midjourney 或 Recraft。
+將 Brand DNA 轉化為 prompt ：
+
+- **基礎 Prompt 結構：**
+  `[產業/產品類型] logo, minimalist, flat vector design, [代表品牌靈魂的 1-2 個關鍵字], [1-2 個主要顏色], white background, clean lines, corporate style --no text, realistic shadows, complex details`
+- **範例：**`Coffee shop logo, minimalist, flat vector design, energetic, orange and navy blue, white background, clean lines, corporate style --no text`
+
+---
+
+## Step 1: AI Logo 提示詞實戰 (Prompting) 2/2
+
+**Gemini / Copilot / Canva / Ideogram**
+請打開 Gemini、Bing Image Creator (Copilot) 或 Canva 內建 AI。
+將你的 Brand DNA 轉化為 prompt：
+
+- `[產業/產品類型] logo, minimalist, flat vector design, [代表品牌靈魂的 1-2 個關鍵字], [1-2 個主要顏色], white background, clean lines, corporate style, DO NOT include any text or realistic shadows.`
+- **範例：**`Coffee shop logo, minimalist, flat vector design, energetic, orange and navy blue, white background, clean lines, corporate style, DO NOT include any text.`
+
+_(註：若使用 Bing 或 Canva，請將結尾的 --no text... 參數改為自然語言描述，如：do not include any text or realistic shadows)_
+
+---
+
+## 結構化提示詞 (YAML Prompting)
+
+除了白話文，你們也可以嘗試 YAML 格式：
+
+```yaml
+Brand_Context:
+  Industry: "[你的產業/產品類型]"
+  Vibe: ["形容詞 1", "形容詞 2"]
+Visual_Requirements:
+  Style: "Flat vector design, minimalist, corporate"
+  Colors: "[1-2 個主要顏色]"
+Negative_Prompt: "NO text, NO letters, NO 3D effects"
+```
+
+**「請讀取上方 YAML 設定，嚴格遵守視覺與排除限制，為我生成 4 款 Logo 圖像。」**
+
+---
+
+## 取得 YAML 敘述範本
+
+如果「抽卡」抽到滿意的 Logo，但不知道該如何維持風格？請叫 AI 幫你寫出它的 YAML 規範。
+
+**操作步驟：**
+1. **上傳圖片**：將你最滿意的 Logo 圖片丟回 Gemini / ChatGPT / Claude。
+2. **下達指令**：
+   > 「這是我目前最滿意的品牌 Logo。請分析這張圖的視覺特徵，包含產業風格、色彩比例、線條調性與整體 Vibe，並幫我轉化為一份標準的 **YAML 格式 Prompt**，方便我之後用這份設定生成更多風格統一的輔助圖形。」
+---
+
+**進階:**
+這是我目前最滿意的品牌 Logo。請分析這張圖的視覺特徵，並嚴格按照以下 YAML 結構輸出，不要新增或刪除任何欄位：
+```YAML
+Brand_Context:
+  Industry: ""        # 判斷最可能的產業類型
+  Vibe: []            # 3-5 個精準形容詞
+
+Visual_Requirements:
+  Style: ""           # 設計風格（如 flat vector / minimalist 等）
+  Shape_Language: ""  # 線條調性（如 geometric / organic / sharp）
+  Colors:
+    Primary: ""       # 主色 HEX
+    Secondary: []     # 輔助色 HEX（1-2 個）
+  Composition: ""     # 構圖特徵（如 icon-only / icon+wordmark）
+
+Negative_Prompt: []   # 根據此 Logo 風格，列出應排除的視覺元素
+```
+
+請只輸出 YAML，不需要任何說明文字。
+
+---
+
+## 補充：什麼是 YAML 格式？
+
+YAML 是一種結構化的資料編寫方式，原本是工程師寫設定檔的語言，現在則是**控制 AI 產出的方式之一**。
+
+**為什麼不用白話文(自然語言)就好？**
+寫了一長串白話文許願**抽卡**，容易漏看關鍵字或隨機發散。YAML 強迫我們用「填表」的邏輯，把需求拆解成精準的條件，能大幅降低 AI 的幻覺！
+
+---
+
+**YAML 基礎語法規則：**
+
+1. **鍵值對應 (Key-Value)**：使用冒號與空格分隔。例如 `Style: "Minimalist"` (注意：冒號後必定要**空一格**)。
+2. **層級關係 (縮排)**：用 2 個**空白鍵**縮排來表示從屬關係（⚠️ 絕對不要按 Tab 鍵）。
+3. **清單項目 (陣列/列表)**：當一個屬性有多個值時，有兩種常見寫法：
+   - **寫法一（減號換行）**：使用 `- ` 換行條列。例如：(注意縮排一致)
+     ```yaml
+     Vibe:
+       - "Professional"
+       - "Clean"
+     ```
+   - **寫法二（中括號單行）**：直接用 `[值1, 值2]` 寫在同一行。例如：
+     ```yaml
+     Vibe: ["Professional", "Clean"]
+     ```
+
+---
+
+![bg right:40%](https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop)
+
+## Step 2: 決策 (Decision)
+
+AI 會產出大量選項，放下個人主觀美感，用商業眼光進行篩選：
+
+- **縮小測試**：將圖片縮小到名片或 APP Icon 的尺寸，圖形是否依然清晰可辨？(如遇到印刷要最小指定高度 x mm)
+- **定位吻合度**：符合你們上週設定的「高價/平價」或「專業/親民」定位嗎？
+- **可註冊性**：是否過於複雜，或與現有知名品牌高度雷同？
+
+**任務：各團隊收斂至唯一 1 個決選 Logo。**
+
+---
+
+## Step 3: 萃取色彩與字體
+
+選定 Logo 後，請從中提取視覺規範：
+
+- **色彩 (Color)**：使用[線上選色工具](#color-pickers)，從 Logo 中吸取出 1 個主色與 1-2 個輔助色。必須記錄精確的 HEX 色碼 (例如：#FF5733)。
+- **字體 (Typography)**：為品牌挑選無版權爭議的商用中/英文字體。
+  - **標題字**：具備個性、適合用於 Logo 標準字或海報標題 (如：展示型字體、粗黑體)。
+  - **內文字**：清晰、好讀、適合長篇閱讀 (如：標準黑體)。
+
+_數位影像設計/數位圖像製作實務 課程字體包日後整理打包提供_
+
+---
+
+<span id="color-pickers"></span>
+
+## 線上選色工具推薦 (Color Pickers)
+
+要從 AI 生成的 Logo 中精準萃取 HEX 色碼，推薦使用以下三款免費工具：
+
+1. **Canva 內建吸色 (無縫接軌)**
+   - **優勢**：等一下排版就要用 Canva。
+   - **作法**：Canva 應該不用我教。
+2. **Coolors (新創團隊最愛) - 極度推薦**
+   - **網址**：[coolors.co/image-picker](https://coolors.co/image-picker)
+   - **優勢**：介面極度現代流暢。上傳圖片後能快速點選吸色，並且能將色票匯出成一張非常漂亮的圖片，直接貼進 Brand Guideline 裡。
+3. **Adobe Color (業界標準)**
+   - **網址**：[color.adobe.com](https://color.adobe.com/)
+   - **優勢**：點擊「從影像擷取 (Extract Theme)」標籤頁，上傳 Logo，它會自動為你抓取 5 個完美搭配的主/輔助色，還能切換不同氛圍（亮色、柔和、深色等）。
+
+---
+
+![bg right:40%](https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop)
+
+## 課堂 Workshop：產出品牌一頁書
+
+**時間限制：60 分鐘**
+請各團隊使用 Canva、Figma 或任何排版軟體，將今天的戰果排版成一張 A4 大小的「Brand Guideline (品牌規範一頁書)」。
+版面上必須具備：
+
+1. 最終決定的品牌名稱與 Slogan。
+2. 決選的 Logo 圖形。
+3. Color Palette (色塊與 HEX 色碼標示)。
+4. Typography (標題與內文的字體名稱及範例句)。
+
+~~(下課前，各組將進行 1 分鐘極速 Pitch 展示視覺成果)~~
+
+---
+
+## 下週預告 (Next Week Preview)：一頁式網站實戰
+
+今天完成了品牌視覺規範，你們的品牌已經具備了專業的外觀。
+下週的課堂上，我們將會直接運用今天的成果，帶大家快速架設第一個 **「一頁式網站 (Landing Page)」**。
+
+**下週課堂實作預告 (無須課前作業，我們課堂上搞定)：**
+
+1. **吸睛文案撰寫**：提煉一句話，讓進站的人秒懂你們賣什麼。
+2. **痛點與解法對接**：列出目標客群的痛點，以及產品帶來的改變。
+3. **行動呼籲 (CTA)**：設計引導使用者留名單或購買的按鈕。
+
+⚠️ **請各團隊務必妥善保存今天的「Brand Guideline 圖檔」與「HEX 色碼」，下週架站馬上就會用到！**
+</file>
+
+<file path="05-20260326-landing-page-stitch.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.9em;
+    width: 100%;
+  }
+  .highlight {
+    color: #b30000;
+    font-weight: bold;
+  }
+filename: 05-20260326-landing-page-stitch.md
+title: 05-實戰衝刺：使用 Google Stitch 打造高擬真 Landing Page
+date: 2026-03-26
+tags:
+  - marp
+  - lecture
+  - startup
+  - week05
+  - google-stitch
+description: 第五週簡報，導入 Google Labs 的最新工具 Stitch，帶領學生從 Vibe Design 進入高擬真 UI 設計。
+status: active
+type: lecture
+project: 114-2-資傳人才新創育成
+area: SHU
+week: 5
+created: 2026-04-14T17:29:00
+updated: 2026-04-14T17:32:00
+---
+
+![bg left:45%](https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1600&auto=format&fit=crop)
+
+# 114-2 資傳人才新創育成
+## Week 05: Google Stitch 視覺縫合實戰
+**授課教師**：林展
+**日期**：2026 / 03 / 26
+
+---
+
+## 為什麼這週我們要用 Google Stitch？
+
+在上週，我們有了品牌靈魂 (DNA) 與 Logo。
+今天我們不只是「填模板」，而是要利用 **Google Stitch** 進行 **「Vibe Design (氛圍設計)」**。
+
+**Stitch 的強大之處：**
+1. **AI 原生畫布**：不需從空白開始，直接用自然語言描述目標。
+2. **高擬真 (High-Fidelity)**：產出的不只是草圖，而是接近完成品的 UI。
+3. **設計即程式碼**：支持匯出到 Figma 或生成前端程式碼。
+
+---
+
+## Step 1: 從 Vibe 開始 (用 YAML 驅動 Stitch)
+
+Stitch 支援從「業務目標」與「感受」出發。
+請將上週練習的 YAML 結構稍微進化，直接貼入 Stitch 的 Prompt 框：
+
+```YAML
+**請以此設定為基礎，為我生成一個具備視覺張力的 Landing Page 佈局**
+```
+
+
+```yaml
+Project: "Landing Page for [Brand Name]"
+Target: "Web / Desktop"
+Vibe_Design:
+  Feel: ["Professional", "Trustworthy", "Minimalist"]
+  Objective: "Convert visitors into pre-order subscribers"
+UI_Components:
+  - Hero section with large headline
+  - 3 Feature cards with icons
+  - Social proof testimonial block
+Brand_Assets: "Use [Primary Color] as main accent"
+```
+👉 **「請以此設定為基礎，為我生成一個具備視覺張力的 Landing Page 佈局。」**
+
+---
+
+## Step 2: 迭代與分支 (Iteration & Branching)
+
+Stitch 最具特色的功能是 **「分支探索」**：
+
+1. **Experimental Mode**：建議開啟實驗模式 (Gemini 3 Pro)，獲得更細緻的間距與視覺層次。
+2. **多向探索**：不滿意某個區塊？點擊該畫面並下指令：「讓這個 Hero Section 看起來更具有未來感」，Stitch 會為你生成新的變體版本，而不會覆蓋原本的設計。
+3. **圖片整合**：直接上傳上週生成的 Logo，Stitch 會嘗試將其整合進 UI 佈局中。
+
+---
+
+![bg right:40%](https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1600&auto=format&fit=crop)
+
+## Step 3: 從設計到轉換
+
+選定最滿意的版本後，我們要進行「數位落地」：
+
+1. **文字精修**：在畫布上直接修改 AI 生成的預留文字，換成你們最具說服力的 Slogan。
+2. **色彩校正**：確保背景、按鈕顏色完全符合你們的 **Brand Guideline**。
+3. **輸出準備**：
+   * 點擊 **"Export Code"** 查看前端實作方式。
+   * 或 **"Paste to Figma"** 進行更細緻的互動設計。
+
+---
+
+## 課堂 Workshop：品牌實體化
+
+**時間限制：90 分鐘**
+
+請各團隊在 **[stitch.withgoogle.com](https://stitch.withgoogle.com/)** 上完成：
+* [ ] 一份具備完整視覺流動感的一頁式 UI。
+* [ ] 包含至少 3 個主要轉換區塊 (Hero, Features, CTA)。
+* [ ] 將設計好的 Canvas 連結或截圖分享至課程平台。
+
+~~(下課前，各組將進行 1 分鐘極速 Pitch 展示視覺成果)~~
+**今天不 Pitch，請在 Stitch 畫布上留下你們的設計思維註解。**
+
+---
+
+## 下週預告：市場驗證與數據分析
+
+今天我們完成了「產品的臉面」。
+下週我們將探討如何讓這個設計變成真實的流量入口。
+* 如果這是 HTML/CSS，我們要如何部署？
+* 如何測試哪一種設計「轉換率」更高？
+
+⚠️ **請各團隊務必在 Stitch 中「命名」你們的 Project，以免進度流失！**
+</file>
+
+<file path="06-20260402-dayoff.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.9em;
+    width: 100%;
+  }
+  .highlight {
+    color: #b30000;
+    font-weight: bold;
+  }
+filename: 06-20260402-dayoff.md
+title: 06-世新週放假
+date: 2026-04-02
+tags:
+  - marp
+  - lecture
+  - startup
+  - week06
+  - dayoff
+description: week 06
+status: active
+type: lecture
+project: 114-2-資傳人才新創育成
+area: SHU
+week: 6
+created: 2026-04-14T17:29:00
+updated: 2026-04-14T17:32:00
+---
+
+![bg left:45%](https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1600&auto=format&fit=crop)
+
+# 114-2 資傳人才新創育成
+## Week 06: 世新週放假
+**授課教師**：林展
+**日期**：2026 / 04 / 02
+
+---
+
+## 放假
+</file>
+
+<file path="07-20260409-pitch-video-production.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section { justify-content: center; }
+filename: 07-20260409-pitch-video-production.md
+title: 07-行銷素材：AI 募資短片製作
+date: 2026-04-09
+tags:
+  - marp
+  - lecture
+  - startup
+  - video-ai
+project: 114-2-資傳人才新創育成
+description:
+status: active
+type: lecture
+area: SHU
+week: 7
+created: 2026-04-14T18:38:00
+updated: 2026-04-14T18:40:00
+---
+
+# 114-2 資傳人才新創育成
+## Week 07: Pitch Video Production
+**授課教師**：林展
+
+---
+
+## 為什麼 Pitch 需要「短片」？
+在短短 3 分鐘的提案中，影片能跨越文字，快速建立：
+1. **情境感**：讓評審看見產品如何在真實生活中解決問題。
+2. **信任感**：展示原型 (Prototype) 的運作邏輯。
+3. **情緒連結**：透過音樂與視覺敘事，強化品牌 DNA。
+
+---
+
+## 先用品牌 YAML
+
+- 結構化的提示詞規範
+- 確保 AI 在產出 Logo、網頁、影片與文案時，視覺與調性能夠高度吻合。
+
+---
+
+## 為什麼 YAML ？
+
+YAML, `Yet Another Markup Language` -> `YAML Ain't a Markup Language`
+
+平常我們用自然語言跟 AI 溝通（e.g：我要一個藍色的、科技感的 Logo），AI 容易有「幻覺」或漏看關鍵字。
+
+---
+
+## 為什麼 YAML ？續
+
+使用 **YAML 格式** 有三大優勢：
+- **精準控制**：透過鍵-值（Key-Value）對，強迫 AI 嚴格遵守設定（如指定 HEX 色碼）。
+- **跨工具通用**：同樣的一份 YAML ，丟給生成圖片的 Midjourney、架站的 Stitch、或寫文案的 Gemini，產出的風格都會一致。
+- **易於管理**：這非常符合 **Personal Knowledge Management (PKM)** 的邏輯，你可以輕易地將這段代碼(Snippet)存在筆記系統(我的愛Obsidian)中，隨時調用。
+
+---
+
+```YAML
+Brand_Identity:
+  Name: "你的品牌名稱"
+  Vibe: ["形容詞 1", "形容詞 2"] # 定義氛圍
+  Core_Value: "核心價值主張"
+
+Visual_System:
+  Style: "例如：Minimalist, Cyberpunk" # 視覺風格
+  Color_Palette:
+    Primary: "#HEX色碼"               # 主色
+    Secondary: ["#輔助色1", "#2"]     # 輔助色
+  Typography: "字體調性建議"           # 字體
+
+Constraints:
+  Negative_Prompt: "絕對不要出現的元素" # 排除條件
+```
+
+---
+
+## Step 1: 腳本生成 (Scripting)
+利用 Gemini 根據你的 YAML 基因產出「廣告腳本」：
+> 「請根據我的品牌 YAML [貼入 YAML]，撰寫一段 30 秒的產品預告片腳本。結構包含：痛點畫面 (10s) -> 產品現身 (10s) -> 改變後的未來與 CTA (10s)。」
+
+---
+
+## Step 2: AI 影音工具實戰
+* **畫面生成 (Text-to-Video)**：使用 **Runway Gen-3** 或 **Luma Dream Machine** 產出產品意境。
+* **虛擬分身 (Avatar)**：使用 **HeyGen** 讓數位創辦人親自解說。
+* **配音 (Voiceover)**：使用 **ElevenLabs** 產出具備溫度的旁白。
+* **快速剪輯**：使用 **CapCut (剪映)** 的 AI 一鍵成片功能。
+
+---
+
+## 課堂任務：30 秒概念短片
+利用這堂課，將你們的視覺規範「動起來」。
+* [ ] **視覺風格一致**：色調必須符合 Brand Guideline。
+* [ ] **解決方案清晰**：影片結束後，觀眾必須知道你們在賣什麼。
+---
+</file>
+
+<file path="08-20260416-digital-asset-super-sprint.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.9em;
+    width: 100%;
+  }
+  .highlight {
+    color: #b30000;
+    font-weight: bold;
+  }
+filename: 08-20260416-digital-asset-super-sprint.md
+title: 08-大合併衝刺：品牌基因、數位門面與獲利模式
+date: 2026-04-16
+tags:
+  - marp
+  - lecture
+  - startup
+  - week08
+  - super-sprint
+description: 整合第 5 週網頁、第 7 週影片與第 8 週商業模式的超級衝刺週，利用 Logo YAML 快速發育出數位資產。
+status: active
+type: lecture
+project: 114-2-資傳人才新創育成
+area: SHU
+week: 8
+created: 2026-04-14T22:56:00
+updated: 2026-04-14T22:56:00
+---
+
+![bg left:45%](https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop)
+
+# 114-2 資傳人才新創育成
+ICS Startup Ecosystems & Talent Development
+## Week 08: The Super Sprint 整合超級衝刺
+**授課教師**：林展
+**日期**：2026 / 04 / 16
+
+---
+
+上上上週，抱歉💁‍♂️
+上週，賺爛💁‍♂️
+我媽還好，我不好
+
+---
+
+## 為什麼要進行「超級衝刺」？
+
+受進度調整與停課影響，我們今天必須在 3 小時內完成兩週的產出。
+這不只是補課，更是測試 **AI 自動化產出** 的實戰：
+
+**今日任務：從一份 Logo YAML 出發**
+1. **生成網頁 (W05)**：建立品牌數位門面。
+2. **製作短片 (W07)**：完成 30 秒產品演示。
+3. **確立商模 (W08)**：定義這門生意怎麼賺錢。
+
+---
+
+## 核心基因：品牌 YAML 複盤
+
+所有同學請先打開你們之前的 **Logo YAML**。
+這段代碼是今天所有 AI 工具的「共同語言」：
+
+```yaml
+Brand_Identity:
+  Name: "你的品牌名稱"
+  Vibe: ["形容詞 1", "形容詞 2"]
+Visual_System:
+  Style: "視覺風格"
+  Color_Palette:
+    Primary: "#HEX色碼"
+```
+
+---
+
+## Part 1: 數位門面 —— Google Stitch 實戰 (60 mins)
+
+利用 YAML 決定網站的「Vibe」，而非手動調整像素。
+
+1. **進入工具**：[stitch.withgoogle.com](https://stitch.withgoogle.com/)。
+2. **注入基因**：將 YAML 中的 `Vibe` 與 `Color_Palette` 餵給 Stitch。
+3. **任務目標**：產出一個具備 **Hero Section** (大標題) 與 **CTA** (行動按鈕) 的高保真 UI。
+4. **重點**：觀察 AI 如何根據你的 YAML 基因自動配置佈局與留白。
+
+---
+
+## Part 2: 募資短片 —— AI 影音快製 (60 mins)
+
+讓品牌「動起來」，解決方案才會更有說服力。
+
+1. **腳本生成**：請 Gemini 根據 YAML 寫一段 30 秒腳本。
+2. **工具調用**：
+   * **畫面生成**：Runway Gen-3 或 Luma Dream Machine (生成產品意境空鏡)。
+   * **旁白生成**：ElevenLabs (根據腳本產出具備溫度的配音)。
+   * **一鍵成片**：CapCut (剪映) AI 將素材與腳本縫合。
+3. **任務目標**：完成一支 30 秒內、符合品牌 DNA 的產品展示短片。
+
+---
+
+## Part 3: 商業邏輯 —— 營收模式 YAML 化 (30 mins)
+
+在下週 Pitch 之前，我們要先定義這是不是一門「好生意」。
+
+```yaml
+Business_Model:
+  Revenue_Streams:
+    - Type: "Subscription" # 獲利方式 (例如：訂閱、抽成)
+      Price_Point: "TWD 299/mo"  # 初步定價
+  Value_Proposition: "解決了客群什麼樣的痛點？"
+  Cost_Structure: ["AI API Costs", "Cloud Hosting", "Marketing"]
+```
+
+---
+
+![bg right:40%](https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1600&auto=format&fit=crop)
+
+## 課堂 Workshop：期中發表準備清單
+
+**時間限制：150 分鐘**
+
+請各團隊在下課前備齊以下資產：
+* [ ] **Google Stitch** 網頁預覽連結 (數位門面)。
+* [ ] **30 秒產品募資短片** (動態展示)。
+* [ ] **商業模式 YAML 檔** (核心邏輯)。
+
+**今天下課前，你們必須具備下週發表的所有核心素材！**
+
+---
+
+## 下週預告：期中發表 (Demo Day 1.0)
+
+**Week 09 (04/23) 流程預告：**
+1. **Pitch 格式**：3 分鐘發表 + 2 分鐘問答 (Q&A)。
+2. **簡報結構**：請參考 **Guy Kawasaki 10 頁框架**。
+3. **展示重點**：今日產出的「網頁連結」與「短片」必須嵌入簡報中。
+
+⚠️ **回家功課：利用本週產出的所有素材，完成最終的 Pitch Deck 封裝。**
+</file>
+
+<file path="08-ICS-Brand-YAML-Example-Mapmo.md">
+---
+title: ICS 品牌 YAML 標準範例 (Mapmo)
+course: ICS Startup Ecosystems & Talent Development
+week: 8
+date: 2026-04-16
+status: active
+created: 2026-04-14T22:55:00
+updated: 2026-04-14T22:55:00
+filename: 08-ICS-Brand-YAML-Example-Mapmo.md
+---
+
+# ICS 品牌 YAML 標準範例：Mapmo 專案
+
+這份範例展示了如何將一個地理照片地圖平台（Mapmo）的品牌規範，轉化為結構化的 YAML 代碼。這組代碼可直接供 AI 工具調用，以確保網頁介面、展示影片與行銷素材的視覺一致性。
+
+---
+
+## 品牌基因碼 (Brand YAML Snippet)
+
+```yaml
+Brand_Identity:
+  Name: "Mapmo"
+  Core_Value: "利用 EXIF 數據，讓每一張照片都能在精確的地理位置上說故事。"
+  Slogan: "走過的路，讓地圖告訴你。"
+  Target_Audience: ["攝影愛好者", "深度旅遊者", "數位遊牧民族"]
+
+Visual_System:
+  Style: "Minimalist & Map-centric" # 以地圖為核心的極簡風格
+  Color_Palette:
+    Primary: "#3B82F6"               # 地圖科技藍
+    Secondary: ["#F97316", "#10B981"] # 冒險橘、導航綠
+  Typography:
+    Heading: "Montserrat / Noto Sans TC Bold"
+    Body: "Inter / Noto Sans TC Regular"
+
+Content_Vibe:
+  Vibe: ["Adventurous", "Precise", "Clean"] # 冒險感、精確、乾淨
+  Tone: "專業且具啟發性"
+  Keywords: ["地圖敘事", "地理資訊", "視覺足跡"]
+
+Constraints:
+  Negative_Prompt: "No messy layouts, No cluttered icons, No low-contrast text"
+```
+
+---
+
+## 應用說明 (Implementation Guide)
+
+### 1. 驅動 Google Stitch (網頁展示)
+將 `Color_Palette` 中的 `#3B82F6` 設定為網頁的主色調（Primary Color），並將 `Style` 描述輸入 Stitch 的氛圍設計（Vibe Design）欄位。
+
+### 2. 驅動 AI 影片工具 (展示影片)
+在生成 30 秒募資短片時，將 `Content_Vibe` 中的 `Adventurous` (冒險感) 作為配音與背景音樂的風格關鍵字，確保影片節奏輕快且充滿探索感。
+
+### 3. 驅動 Gemini (簡報文案)
+在製作 Pitch Deck 時，利用 `Core_Value` 與 `Target_Audience` 要求 AI 生成針對「攝影愛好者」痛點的說服性文案。
+
+---
+**授課教師**：林展 (Lin Chan)
+**課程單位**：世新大學 資訊傳播學系 (ICS)
+</file>
+
+<file path="08-Spec-Brand-Guideline-Mapping.md">
+---
+filename: 08-Spec-Brand-Guideline-Mapping.md
+title: 品牌指南結構與 YAML 對照表 (Brand Guideline & YAML Mapping)
+course: ICS Startup Ecosystems & Talent Development
+week: 8
+date: 2026-04-16
+status: active
+created: 2026-04-14T22:50:00
+updated: 2026-04-14T22:55:00
+---
+
+# 品牌指南與品牌 YAML 結構對照表
+
+本文件為協助 **ICS (資訊傳播學系)** 的學生，將設計概念轉化為結構性內容。
+將品牌指南(Brand Guideline)的項目對應到 YAML 格式結構所整理。
+
+---
+
+## 1. 品牌核心 (Brand Identity / DNA)
+定義品牌的核心與市場定位，為 `Brand_Identity` 的資料來源。
+
+* **核心價值 (Core Values)** [YAML: `Core_Value`]：品牌解決問題的核心能力與堅持。
+* **品牌標語 (Slogan / Tagline)** [YAML: `Slogan`]：具備記憶點的一句話廣告語。
+* **目標受眾 (Target Audience)** [YAML: `Target_Audience`]：核心使用者畫像，決定行銷訴求。
+* **品牌使命與願景 (Mission & Vision)**：品牌存在的長期目標。
+
+---
+
+## 2. 視覺系統 (Visual System)
+定義外觀規格，為 `Visual_System` 的核心。
+
+* **視覺風格 (Visual Style)** [YAML: `Style`]：整體的視覺調性（如：極簡、科技感、復古）。
+* **色彩計畫 (Color Palette)** [YAML: `Color_Palette`]：
+    * **主色 (Primary Color)** [YAML: `Primary`]：品牌最核心的 HEX 色碼。
+    * **輔助色 (Secondary / Accent Colors)** [YAML: `Secondary`]：用於強調或按鈕的對比色。
+* **標準字體 (Typography)** [YAML: `Typography`]：
+    * **標題 (Heading)**：展示層級的字體。
+    * **內文 (Body)**：具備易讀性的字體。
+
+---
+
+## 3. 溝通與語調 (Communication & Tone)
+決定 AI 生成文案與影片時的性格，對應 YAML 的 `Content_Vibe`。
+
+* **品牌氛圍 (Vibe)** [YAML: `Vibe`]：品牌帶給人的第一感官印象（如：專業、熱情、冷靜）。
+* **語調 (Tone of Voice)** [YAML: `Tone`]：溝通時的語氣設定。
+* **關鍵字 (Keywords)** [YAML: `Keywords`]：品牌溝通中頻繁出現的詞彙。
+* **負面排除 (Negative Constraints)** [YAML: `Negative_Prompt`]：絕對禁止出現的視覺元素或用語。
+
+---
+
+## 4. 應用展示與素材 (Applications & Assets)
+品牌在真實場景中的具體呈現，對應衝刺週的產出。
+
+* **情境展示圖 (Mockups)**：產品在手機、筆電或實際場景中的樣貌。
+* **展示影片 (Pitch Video)**：30 秒的產品核心價值動態呈現。
+* **數位門面 (Landing Page)**：利用 Google Stitch 等工具產出的高保真介面。
+
+---
+
+## 品牌 YAML 轉換範例 (Code Snippet)
+
+學生可將上述指南內容，精簡為以下 YAML 格式以供 AI 調用：
+
+```yaml
+Brand_Identity:
+  Name: "專案名稱"
+  Core_Value: "Core Values"
+  Slogan: "Slogan / Tagline"
+  Target_Audience: ["Audience A", "Audience B"]
+
+Visual_System:
+  Style: "Visual Style"
+  Color_Palette:
+    Primary: "#HEX"
+    Secondary: ["#HEX1", "#HEX2"]
+  Typography: "Typography Settings"
+
+Content_Vibe:
+  Vibe: ["Keyword 1", "Keyword 2"]
+  Tone: "Tone of Voice"
+  Negative_Prompt: "Negative Constraints"
+```
+
+---
+**授課教師**：林展 (Lin Chan)
+**課程單位**：世新大學 資訊傳播學系 (ICS)
+</file>
+
+<file path="08-supplementary-brand-yaml.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  code {
+    background: #f4f4f4;
+  }
+filename: 08-supplementary-brand-yaml.md
+title: 品牌 YAML：從視覺基因到商業靈魂
+date: 2026-04-16
+tags:
+  - marp
+  - lecture
+  - startup
+  - yaml
+description: 將 Logo 提示詞擴展為完整的品牌視覺與溝通規範。
+status: active
+type: lecture
+project: 114-2-資傳人才新創育成
+area: SHU
+week: 8
+created: 2026-04-14T22:45:00
+updated: 2026-04-14T22:45:00
+---
+
+## 擴展：從 Logo YAML 到品牌 YAML
+
+之前的 YAML 僅定義了圖形特徵。完整的 **「品牌 YAML」** 則涵蓋了視覺、溝通調性與商業核心，確保 AI 在產出網頁與展示影片時，風格不會跑調。
+
+### 品牌 YAML 結構範例
+
+```yaml
+Brand_Identity:
+  Name: "品牌名稱"
+  Core_Value: "品牌核心價值（解決什麼痛點）"
+  Slogan: "一句話廣告語"
+  Target_Audience: ["目標客群 1", "目標客群 2"]
+
+Visual_System:
+  Style: "例如：Minimalist, Tech-futuristic" # 視覺總體風格
+  Color_Palette:
+    Primary: "#HEX色碼"               # 品牌主色
+    Secondary: ["#輔助色1", "#2"]     # 輔助色清單
+  Typography:
+    Heading: "標題字體建議"
+    Body: "內文字體建議"
+
+Content_Vibe:
+  Tone: ["Professional", "Friendly"]  # 文案與溝通語氣
+  Keywords: ["關鍵字 A", "關鍵字 B"]    # 常用關鍵字
+
+Constraints:
+  Negative_Prompt: "絕對不要出現的元素" # 排除條件
+```
+
+---
+
+## 如何運用品牌 YAML？
+
+這份結構化的YAML，可使用：
+
+1. **展示影片 (Pitch Video)**：
+   將 `Content_Vibe` 與 `Visual_System` 餵給影片 AI，確保背景音樂、畫面剪輯節奏與品牌色調一致。
+2. **網頁介面 (Stitch / UI)**：
+   將 `Color_Palette` 與 `Typography` 設定直接套入 Google Stitch 的風格編輯器，實現自動化視覺對齊。
+3. **商業提案 (Pitch Deck)**：
+   利用 `Core_Value` 與 `Target_Audience` 驅動 Gemini 生成簡報大綱，確保邏輯與行銷訴求不脫節。
+
+---
+
+## 課堂練習：更新你的品牌基因
+
+請各團隊根據目前的專案進度，將原本簡單的 Logo 規範擴展為完整的「品牌 YAML」。
+
+**檢查清單：**
+- [ ] **色碼精確度**：主色與輔助色的 HEX 碼是否已定稿？
+- [ ] **客群定義**：是否能精簡出 2 個核心受眾標籤？
+- [ ] **語氣設定**：這會決定下週 Pitch 簡報與今日影片的文案風格。
+
+**請將更新後的 YAML 代碼儲存在你們的專案筆記（如 Obsidian）中，後續產出將以此為準。**
+</file>
+
+<file path="09-20260423-midterm-pitch-demo-day.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.9em;
+    width: 100%;
+  }
+filename: 09-20260423-midterm-pitch-demo-day.md
+title: 09-期中提案發表：Demo Day 1.0
+course: ICS Startup Ecosystems & Talent Development
+week: 9
+date: 2026-04-23
+status: active
+project: 114-2-資傳人才新創育成
+area: SHU
+created: 2026-04-14T23:10:00
+updated: 2026-04-14T23:10:00
+---
+
+![bg left:45%](https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1600&auto=format&fit=crop)
+
+# 114-2 資傳人才新創育成
+ICS Startup Ecosystems & Talent Development
+## Week 09: Demo Day
+**授課教師**：林展
+**日期**：2026 / 04 / 23
+
+---
+
+## 今日目標：第一階段成果驗收
+
+在上週（W08）的超級衝刺後，各組應已具備品牌YAML、Landing page（Stitch）與展示影片。
+
+**今天我們要檢驗：**
+1. **商業邏輯**：你的點子真的能解決痛點並賺錢嗎？
+2. **視覺一致性**：從 Logo 到簡報是否符合品牌 YAML？
+3. **溝通說服力**：能否在 3 分鐘內打動台下的聽眾？
+
+---
+
+- 1610-1700 : 10 Page 簡報
+- 1710-1800 : Pitch
+
+
+---
+
+## 發表規則與流程
+
+**發表格式：3 + 2 模式**
+* **3 分鐘 Pitch**：時間到即停止，請精準控制節奏。
+* **2 分鐘 Q&A**：由老師與現場同學進行提問。
+
+**必備展示項目：**
+* **Google Stitch 連結**：現場展示數位門面的佈局。
+* **30 秒募資短片**：直接嵌入簡報中播放。
+* **獲利模式說明**：清楚交代你的營收來源。
+
+---
+
+記得 KMBI 嗎 20250515
+![](https://seraphwu.github.io/ICS-Startup-Ecosystems-Talent-Development/20260422-412.jpg)
+
+---
+
+### 募資簡報簡易實戰 (Pitch Deck Practice)
+
+- **第一頁**：公司主視覺、創辦人名字
+- **第二頁**：Slogan、你看到的問題（痛點）
+- **第三頁**：問題帶來的具體困擾
+- **第四頁**：市場現有的解法
+- **第五頁**：你從現有解法中，提出的問題、你的解法
+- **第六頁**：你的解法具體細節（做了哪些事）
+- **第七頁**：市場競品分析（人無我有？多快省好？）
+- **第八頁**：市場規模分析（餅有多大？你能分多少？）
+- **第九頁**：你的團隊組成與優勢（為什麼是你們來做？）
+- **第十頁**：財務預估（多少時間內？花多少錢？做多少事？賺多少？）
+- **第十一頁**：募資計畫（用多少股募多少錢？錢怎麼用？）
+- **第十二頁**：Slogan、CTA (Call to Action)
+
+---
+
+## 我們今天用 Guy Kawasaki 10 頁簡報
+
+---
+## 10 頁簡報核心架構 (Guy Kawasaki 10 Slides)
+
+Guy Kawasaki 的「10/20/30 法則」是創業募資簡報的業界標準，強調 **10 頁簡報**、**20 分鐘發表**以及使用 **30 號字體**以確保清晰度。
+
+---
+
+請確保你們的簡報具備以下核心邏輯：
+1. 標題**Title**: 品牌名稱與一句話的價值主張。
+2. 問題**Problem**: 清楚定義現狀中的痛點或尚未被滿足的需求？
+3. 解決方案**Solution**: 你們怎麼解決？(展示網站與影片)。
+4. 市場規模**Market Size**: 市場有多大？(TAM/SAM/SOM)。
+5. 商業模式**Business Model**: 你要怎麼賺錢？清楚定義現狀中的痛點或尚未被滿足的需求。
+6. 競爭分析**Competition**: 為什麼你們比別人強？
+7. 行銷策略**Marketing**: 流量怎麼來？如何獲取客戶並推廣產品
+8. 團隊**Team**: 為什麼是你們這組來做？
+9. 財務預測**Financials**: 初步的財務預測。
+10. 資金需求**The Ask**: 你今天需要多少支持/資金？
+
+---
+
+## 互評機制：準創業家觀點
+
+請大家在聆聽其他組別發表時，從以下三個維度進行評分與記錄：
+
+* **視覺力 (Visual Identity)**：整體設計是否具備品牌一致性？
+* **市場力 (Market Potential)**：解決方案是否具備商業開發價值？
+* **執行力 (Execution)**：Stitch 網頁與影片的完成度如何？
+
+---
+
+![bg right:40%](https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop)
+
+## 發表後的下一步？
+
+期中發表不是結束，而是下半學期「商業落地」的起點。
+
+從下週開始，我們將進入：
+* **創業法規與行政**：如何合法成立公司。
+* **精確財務模型**：從「預估」轉向「實算」。
+* **數據驅動優化**：根據今日回饋調整產品方向。
+
+---
+
+## 下週預告：創業法規與稅務實務
+
+恭喜大家完成第一階段的衝刺！
+下週我們將討論：
+* 如何在台灣成立一間新創公司？
+* AI 產出物在法律上的權利歸屬。
+* 創業初期最容易踩到的稅務紅線。
+
+⚠️ **請將今日發表的 Pitch Deck (PDF) 與網頁連結上傳至課程平台。**
+</file>
+
+<file path="10-20260430-company-sim-and-money-map.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.8em;
+    width: 100%;
+  }
+  .highlight {
+    color: #b30000;
+    font-weight: bold;
+  }
+filename: 10-20260430-company-sim-and-money-map.md
+title: 10-創業實戰模擬與資源地圖 (Company Sim & Money Map)
+course: ICS Startup Ecosystems & Talent Development
+week: 10
+date: 2026-04-30
+status: active
+version: 3
+project: 114-2-資傳人才新創育成
+area: SHU
+created: 2026-04-29T09:15:00
+updated: 2026-04-30T00:34:21
+---
+
+![bg left:45%](https://images.unsplash.com/photo-1553481187-be93c21490a9?q=80&w=1600&auto=format&fit=crop)
+
+# 114-2 資傳人才新創育成
+ICS Startup Ecosystems & Talent Development
+## Week 10: 設立公司與資源地圖
+**授課教師**：林展
+**日期**：2026 / 04 / 30
+
+---
+
+## 從Pitch到實際公司
+
+上週完成 **Pitch 1.0** ，這週進入實際公司「活下來」的部分。
+
+1. **公司大富翁**：公司設立流程、名稱預查與營業項目選擇。
+2. **資金地圖**：拆解政府補助案與創業貸款申請須知。
+
+**目標**：下課前完成一份具備法律身分與資金路徑的「企業行政 YAML」。
+
+---
+
+觀視音
+
+---
+## Part 1: 你的公司叫什麼名字？
+
+在台灣成立公司，第一步是「名稱預查」與「營業項目」定義。
+
+* **名稱預查**：需準備 1-5 個名稱，至[經濟部一站式門戶](https://onestop.nat.gov.tw/)進行檢索。
+* **營業項目碼**：<https://gcis.nat.gov.tw/cod/>
+    * **I301010**：資訊軟體服務業 (資傳系專案最常用)。
+    * **J503040**：廣播節目製作業 (涉及影音產出)。
+    * **ZZ99999**：除許可業務外，得經營法令非禁止或限制之業務。**萬用但書**
+
+---
+
+# 台灣企業組織型態比較
+## 商號、有限公司、股份有限公司
+
+在台灣創業，選擇「商號」或「公司」不僅影響稅務，更直接決定了創辦人的**法律風險**與品牌的**擴張潛力**。
+
+---
+
+## 1. 核心規格總表
+
+| 比較項目 | 商號 (獨資/合夥) | 有限公司 | 股份有限公司 |
+| :--- | :--- | :--- | :--- |
+| **法律依據** | 《商業登記法》 | 《公司法》 | 《公司法》 |
+| **法人地位** | **無** (非獨立法人) | **有** (獨立法人) | **有** (獨立法人) |
+| **登記主管機關** | **所在地縣市政府** | **經濟部 (商業發展署)** | **經濟部 (商業發展署)** |
+| **名稱專用範圍** | **僅限登記之縣市內** | **全國唯一名稱** | **全國唯一名稱** |
+| **責任性質** | **無限責任** | **有限責任** | **有限責任** |
+| **債務承擔** | 負責人負連帶無限清償責任 | 以出資額為限 | 以股份出資額為限 |
+| **跨縣市遷移** | 須歇業再新設 (變更統編) | 可遷址登記 (統編不變) | 可遷址登記 (統編不變) |
+| **對外公信力** | 地方性規模 | 國際/全國性規模 | 國際/全國性規模 |
+
+---
+
+## 2. 風險與成長 1/3
+
+### A. 債務清償責任 (創辦人的安全邊際)
+* **商號：無限責任**
+    商號與個人在法律上被視為一體。若商號資產不足以償還債務，債權人有權追討負責人名下的**個人財產**（存款、房產、車輛）。
+* **公司：有限責任**
+    公司為獨立法人。股東對公司的責任僅限於其**出資額**。若公司負債千萬，股東出資一百萬且已繳足，則個人財產在原則上受到法律屏障。
+
+---
+
+## 2. 風險與成長 2/3
+
+### B. 管轄權與品牌保護
+* **商號：地方自治**
+    名稱保護僅限於該縣市。例如在台北市登記「好資傳行」，別人在新北市仍可使用相同名稱。且跨縣市搬遷時必須重新設立，對長期信用累積較不利。
+* **公司：全國一致**
+    名稱預查由經濟部統一核准。一旦核准，全台灣不可有同名公司。跨縣市遷移僅需辦理變更登記，**統一編號永久不變**。
+
+---
+
+## 2. 風險與成長 3/3
+
+### C. 管理與轉讓彈性
+* **有限公司**：結構穩定簡便，轉讓出資額需經其他股東**過半數**同意。適合核心創業小團隊。
+* **股份有限公司**：股份轉讓原則上**自由**。適合未來有募資計畫、發行認股權證或上市櫃規劃的新創專案。
+
+---
+
+自然人：你我他
+法　人：透過登記程序（如設立公司）所產生的「法律實體」
+
+---
+
+## 3. 登記實務流程與規費
+
+目前可透過「經濟部一站式門戶」進行線上辦理：
+
+* **名稱預查**：線上申請規費 NT$150 (紙本 NT$300)。
+* **登記規費**：
+    * **商號**：通常為 NT$1,000。
+    * **公司**：按資本額 1/4000 計算 (未達 1,000 元者以 1,000 元計)。
+* **一站式連結**：[經濟部公司與商業登記線上申請系統](https://onestop.nat.gov.tw/)
+
+---
+
+## 登記設立建議
+
+建議優先選擇 **「有限公司」** 或 **「股份有限公司」**：
+
+1.  **保護資產**：確保開發過程中的法律風險不會波及創辦人個人財產。
+2.  **品牌唯一**：確保專案名稱具備全國性的唯一性，有利於 SEO 與品牌識別。
+3.  **融資優勢**：在申請 **SBIR**、**青年創業貸款** 或尋求 **天使投資** 時，公司組織的財務結構與公信力遠高於商號。
+4.  **營運持續**：無論團隊未來搬遷至何處，都能保留最初的統一編號與企業信用。
+
+---
+
+## Part 2: 第一桶金 (補助與貸款)
+
+- 存錢
+- 比賽獎金
+- 天使資金
+	- **爸爸媽媽**
+	- **長輩**
+	- **親戚**
+	- **朋友**
+
+---
+
+除了政府補助金（不用還），低利的創業貸款也是重要槓桿。
+
+| 類別     | 項目名稱              | 補助/貸款重點           | 適合對象                |
+| :----- | :---------------- | :---------------- | :------------------ |
+| **補助** | **SBIR (經濟部)**    | 技術研發與創新。          | 具備技術門檻的 ICS 專案。     |
+| **補助** | **U-start (教育部)** | 青年創業獎助學金。         | 在校學生或應屆畢業生。         |
+| **貸款** | **青年創業及啟動金貸款**    | **低利、政府保證、手續簡便。** | 18-45 歲、設立登記未滿 5 年。 |
+| **資源** | **SITI (北市府)**    | 獎勵投資補助（研發/品牌）。    | 設立於台北市之公司。          |
+
+---
+
+## 關於「青年創業貸款」的關鍵要點
+
+這項資源能協助團隊解決初期的營運周轉或設備採購壓力：
+
+* **對象限制**：負責人需年滿 18-45 歲，且需修過相關創業輔導課程（如：20 小時實體或數位課程）。
+* **貸款額度**：
+    * **準備金及開辦費用**：最高 200 萬元。
+    * **週轉性支出**：最高 400 萬元。
+    * **資本性支出**：最高 1,200 萬元。
+* **優勢**：貸款金額 100 萬元以下，政府提供高比例信用保證，通常免保證人。
+
+---
+
+![](https://img.youtube.com/vi/XokM7vM62o4/maxresdefault.jpg)
+https://youtu.be/XokM7vM62o4
+
+---
+
+## 實作練習：行政與資源 YAML 化
+
+請各組將專案的「法律身分」與「資金來源」結構化。
+
+```yaml
+Company_Setup:
+  Legal_Name_Options: ["Mapmo 數位科技", "地圖說故事有限公司"]
+  Business_Categories: ["I301010", "J503040", "ZZ99999"]
+  Entity_Type: "閉鎖型股份有限公司"
+
+Funding_Strategy:
+  Grant_Target: "SBIR 創業概念組"
+  Loan_Target: "青年創業及啟動金貸款 (預計申請 100 萬開辦費)"
+  Application_Focus: "利用 AI 自動生成地理敘事之技術開發"
+  Financial_Goal: "達成 12 個月營運現金流儲備"
+```
+
+---
+# SBIR (小型企業創新研發計畫)
+撰寫計畫書時，重點是**你的創新具備技術門檻，且具備明確的商業價值。**
+
+四大重點：
+
+---
+
+### 1. 痛點與機會 —— 「為什麼要做？」
+SBIR 非常看重「為什麼是你？為什麼是現在？」。
+* **精準痛點**：具體描述目前市場上存在的技術缺口或使用者困擾。
+* **產業趨勢**：結合目前的 AI 技術趨勢或數位轉型需求（例如：數位內容產製成本過高、地理敘事缺乏互動性等）。
+* **撰寫技巧**：引用數據說明市場規模與潛力，證明這是認真值得的專案。
+
+---
+
+### 2. 核心創新點 —— 「你有什麼不同？」
+這是 SBIR 最核心的評分項目。創新必須包含「技術」或「商模」的突破。
+* **技術創新**：例如：開發了某種特殊的 AI 自動化工作流、優化了特定算法的效能、或是跨平台的技術整合。
+* **商模創新**：改變了現有的服務流程或收費機制。
+* **撰寫技巧**：使用 **「人無我有、人有我優」** 的邏輯，並以表格或流程圖對比現有方案的不足。
+
+---
+
+### 3. 技術可行性與執行力 —— 「你做得出來嗎？」
+評審最怕「畫大餅」。你需要展現團隊具備把想法實現的能力。
+* **研發路徑**：明確列出計畫期間的關鍵里程碑。
+* **技術架構**：提供初步的系統架構圖、開發工具與預計採用的技術標準。
+* **團隊背景**：強調成員在資傳領域的專業背景、過去的實作經驗或已取得的初步原型。
+
+---
+
+### 4. 預期效益與市場價值 —— 「做出來後能賺錢嗎？」
+政府補助是為了創造產值。
+* **量化指標**：預計產生的營收、增加的就業人數、或是節省的成本百分比。
+* **質化效益**：對產業數位化的貢獻、品牌影響力的提升。
+* **撰寫技巧**：將此部分與 **Week 11 的財務模型** 連結，展現出具備可持續性的經營規劃。
+
+---
+
+## SBIR Phase 1 vs. Phase 2 差異表
+
+在 **SBIR (小型企業創新研發計畫)** 的體系中，Phase 1 與 Phase 2 代表了新創產品從「點子驗證」到「實體開發」的兩個關鍵階段。
+
+| 比較項目     | Phase 1 (創業概念組 / Proof of Concept) | Phase 2 (研發轉型組 / Prototype)        |
+| :------- | :--------------------------------- | :--------------------------------- |
+| **核心目標** | **可行性研究**                          | **產品開發與商用化**                       |
+| **重點在於** | 證明這個點子「在技術上行得通」。                   | 證明這個產品「做得出來且有人買」。                  |
+| **補助金額** | 通常約 **NT$ 100 萬** 左右。              | 通常為 **NT$ 200 萬 ~ 1,000 萬** (依規模)。 |
+| **執行期間** | 較短 (通常為 6 個月)。                     | 較長 (通常為 10 - 22 個月)。               |
+| **產出成果** | 研究報告、初步模型、專利規劃。                    | 完整原型 (Beta 版)、實際營收、專利獲證。           |
+| **適合對象** | 剛起步、只有點子與初步技術的團隊。                  | 已有 POC、準備進入市場規模化的公司。               |
+
+---
+
+```YAML✱SBIR 創業概念組 (Phase 1) 撰寫框架
+Proposal_Core:
+  Problem_Statement: "描述目前的產業痛點"
+  Innovation_Type: ["技術研發", "服務模式創新"]
+  Unique_Selling_Point: "你的產品與對手最大的差異點"
+  
+Technical_Specs:
+  Tech_Stack: ["AI Framework", "Automation Tool", "Web Tech"]
+  Key_Deliverable: "計畫結束後會產出的具體物件 (如：Beta 版平台)"
+  
+Expected_Outcomes:
+  Market_Size: "預估潛在使用者數量"
+  Revenue_Goal: "預計帶來的產值/營收"
+  Social_Impact: "對資傳產業的影響力"
+```
+
+---
+
+![bg right:40%](https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop)
+
+## 課堂任務：企業行政與資金初報
+
+
+請各團隊完成以下任務並更新至專案筆記：
+* [ ] **完成名稱預查模擬**：選出 3 個不撞名的正式公司名稱、**營業項目**
+* [ ] **鎖定補助與貸款**：選定一個政府補助案，並評估是否申請青年創業貸款。
+* [ ] **試算還款能力**：若申請貸款，你們的商業模式（Week 11 內容）是否足以負擔每月利息支出？
+
+存放至專案筆記並繳交至 Tronclass
+
+---
+## 下週預告：智財保護與檢索實戰 (Week 11)
+
+有了身分（法人）與資源（補助），下一步是保護你的「研發成果」：
+* **商標 (Trademark)**：如何確保你的品牌名稱不會被告侵權？
+* **專利 (Patent)**：資傳專案的演算法或介面可以申請專利嗎？
+
+⚠️ **請確保今日完成的「行政 YAML」中，公司名稱是經過初步篩選的。**
+</file>
+
+<file path="11-20260507-ip-protection-and-search.md">
+---
+marp: true
+theme: default
+paginate: true
+size: 16:9
+style: |
+  section {
+    justify-content: center;
+  }
+  table {
+    font-size: 0.8em;
+    width: 100%;
+  }
+  .highlight {
+    color: #b30000;
+    font-weight: bold;
+  }
+filename: 11-20260507-ip-protection-and-search.md
+title: 11-智財保護與檢索實戰 (IP Protection & Search)
+course: ICS Startup Ecosystems & Talent Development
+week: 11
+date: 2026-05-07
+status: active
+version: 3
+project: 114-2-資傳人才新創育成
+area: SHU
+created: 2026-04-29T12:26:00
+updated: 2026-05-06T19:54:00
+---
+
+<!-- _class: lead -->
+![bg left:45%](https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1600&auto=format&fit=crop)
+
+# 114-2 資傳人才新創育成
+ICS Startup Ecosystems & Talent Development
+## Week 11: 智財保護與檢索實戰
+**授課教師**：林展
+**日期**：2026 / 05 / 07
+
+---
+
+## 今日核心：守護你的數位資產
+
+在 W10 決定了公司名稱後，這週我們要確保你的品牌與技術具備「排他性」。
+
+**課程目標：**
+1. **商標基礎 (Trademark)**：理解類別與符號（©, ™, ®）的法律意義。
+2. **專利基礎 (Patent)**：理解發明、新型與設計專利的差異。
+3. **檢索實戰**：學會使用「智慧財產局」系統進行檢索。
+4. **IP YAML 建立**：將智財規劃與品牌資產結構化。
+
+---
+
+## 1. 商標：品牌的身分證
+
+對於資傳產出專案（App、平台、內容服務），最常涉及的類別：
+* **第 09 類**：錄載有電腦程式之光碟、可下載之電腦軟體。
+* **第 35 類**：廣告、企業管理、電子商務零售。
+* **第 42 類**：電腦硬體與軟體之設計與開發 (**ICS 專案核心**)。
+
+<div class="highlight">警告：名稱沒過商標檢索，強行品牌化可能導致日後被迫改名或支付賠償金。</div>
+
+---
+
+## 1.1 標記的藝術：© vs ™ vs ®
+
+在產品介面底部或 Logo 旁，這些符號代表的法律位階完全不同：
+
+| 符號 | 名稱 | 法律效力 | 取得方式 |
+| :---: | :--- | :--- | :--- |
+| **©** | **Copyright (著作權)** | 保護表現形式（設計圖、程式碼、文案）。 | **自動取得**。作品完成即受保護。 |
+| **™** | **Trademark (商標聲明)** | 警示大眾「我打算將此作為商標使用」。 | **自行標註**。無須登記，保障較弱。 |
+| **®** | **Registered (註冊商標)** | **最強保護**。證明已通過智財局核准。 | **審核通過**。拿到證書才能標註。 |
+
+---
+
+## 什麼時候該用哪一個？
+
+* **© (Copyright)**：
+    * **情境**：UI 介面、宣傳影片。標註 `© 2026 Mapmo Inc.` 提醒他人勿侵權。
+* **™ (Trademark)**：
+    * **情境**：剛想好 Logo 但還沒拿到證書。這是告訴對手「我在用了」。
+* **® (Registered)**：
+    * **嚴禁**：**未經註冊嚴禁標註**。這涉及虛偽標示，可能吃上官司！ 拿到正式註冊證後，請立刻將 ™ 升級為 ®。
+
+---
+
+## AI 生成 Logo 的法律陷阱
+
+如果 Logo 是直接用生成式 AI 生成的，請特別注意：
+
+* **沒有著作權 (No ©)**：目前台灣與國際多數實務認定，純 AI 生成的圖像缺乏「人類精神創作」，**無法取得著作權**。別人原封不動照抄你的 AI Logo，你很難用《著作權法》告他。
+* **可以當商標用 (Can use ™ / ®)**：只要這張圖具備「識別性」，且沒抄襲現有商標，你依然可以將它作為商標使用（標註 ™），甚至去註冊（®）。
+* **破解法 (Human Touch)**：用 AI 生成草圖後，務必透過 Illustrator 進行**人為的大幅度修改、向量化與排版**。有人介入創作，才能同時獲得 © 與 ™ 的雙重防護網。
+
+---
+
+## 2. 專利：技術的保護
+
+資傳系的畢業製作或新創專案可以申請專利嗎？
+* **發明專利 (20年)**：具備高度創作性，如：特殊的 AI 演算法流程。
+* **新型專利 (10年)**：針對物體形狀、構造的改良（如硬體裝置）。
+* **設計專利 (15年)**：針對物品之形狀、花紋、色彩或其結合之創作 (**UI 介面屬此類**)。
+
+---
+
+## 3. 檢索實戰：只能有一個鼎泰豐
+
+**實作任務：**
+1. 進入 [經濟部智慧財產局商標檢索系統](https://tmsearch.tipo.gov.tw/)。
+2. 輸入你們上週擬定的 3 個公司名稱。
+3. **查核點**：是否有相似名稱已在同類別（如 42 類）註冊？
+4. **思考**：如果名稱被佔用了，你們要微調名字，還是換一個類別競爭？
+
+---
+
+## 實作練習 1：智財保護 YAML 化
+
+請各組更新專案筆記中的 IP 策略，釐清整體法律佈局：
+```yaml
+IP_Protection_Strategy:
+  Trademark_Plan:
+    Proposed_Name: "Mapmo"
+    Target_Classes: ["09", "42"]
+    Search_Status: "Clear / Conflict Found" # 填寫今日檢索結果
+    Symbol_Usage: "Currently using ™"
+  Patent_Potential:
+    Feature: "地理位置自動生成敘事演算法"
+    Type_Target: "發明專利 / 設計專利 (UI)"
+  Action_Item: "預計於 2026 Q4 委託事務所進行正式申請"
+```
+
+---
+
+## 實作練習 2：品牌資產與商標管理 YAML
+
+將 Logo 的「產製過程」記錄下來，這能幫助 AI 後續自動生成品牌手冊 (Brand Guidelines) 或授權書：
+
+```yaml
+Brand_Assets_Manager:
+  Brand_Name: "Mapmo"
+  Visual_Identity:
+    Primary_Color: "#FF5A5F"
+    Typography: "Noto Sans TC"
+  Logo_Creation_Log:
+    Method: "AI Assisted (Midjourney + Illustrator)"
+    AI_Prompt: "A minimalist map pin forming a letter M, geometric, flat design, vector style"
+    Human_Modification: "在 AI 中重新描繪向量路徑、微調圓角比例、加入專屬標準字"
+    Copyright_Status: "具備人類加工心血，主張擁有 ©"
+  Trademark_Status:
+    Current_Symbol: "™"
+    Search_Record_Image: "2026-05-07_TIPO_Search_Clear.png"
+```
+
+---
+
+![bg right:40%](https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1600&auto=format&fit=crop)
+
+## 課堂任務：智財防禦報告
+
+請各團隊完成以下任務並更新至專案筆記：
+* [ ] ~~**商標檢索截圖**：截圖檢索結果並分析潛在侵權風險。~~
+* [ ] **IP 策略 YAML**：寫入專案筆記中 IP 策略 YAML。
+* [ ] **建立品牌 YAML**：確實記錄 Logo 的產製過程（由人修改了哪裡）。
+* [ ] **標註檢查**：在你們的 **Stitch 網頁** 底部正確標註 © 與 ™。
+* [ ] **著作權聲明**：針對專案中純 AI 生成的素材，撰寫一份權利聲明。*利用 [範本](https://seraphwu.github.io/ICS-Startup-Ecosystems-Talent-Development/11-supplement-ai-copyright-template) 進行修改*
+
+---
+
+## 下週預告：定價心理學與策略 (Week 12)
+
+保護好了技術，下週我們要決定產品的「身價」：
+* **定價心理學**：為什麼 99 元比 100 元更有魔力？
+* **成本利潤計算**：算清楚每一筆訂單的毛利。
+* **競品比價表**：找出你們在市場中的價格甜蜜點。
+
+⚠️ **請確保今日的 IP 檢索結果已存檔，這會影響你未來的品牌支出預算。**
+</file>
+
+<file path="11-supplement-ai-copyright-template.md">
+# [專案/公司名稱] 數位資產與 AI 生成內容權利聲明
+**最後更新日期：[YYYY-MM-DD]**
+
+本聲明旨在說明 [專案/公司名稱]（以下簡稱「本團隊」）於產品開發、網頁視覺與行銷素材中，使用人工智慧（AI）生成工具之情形，以及相關智慧財產權之歸屬原則。
+
+### 1. 透明度與工具使用宣告
+本團隊在專案開發過程中，秉持人機協作精神，輔以 AI 工具以提升產製效率。我們使用的主要工具包含但不限於：[列出工具，如：Midjourney、ChatGPT、Gemini、Claude 等]。
+
+### 2. 純 AI 生成素材 (無專屬著作權主張)
+針對本專案中未經人類實質修改之「純 AI 生成產出物」（包含但不限於：[舉例：部分網頁背景圖、情境示意圖、通用文案段落]），本團隊依據目前台灣智慧財產局之實務見解，**不主張擁有專屬之著作權（Copyright）**。
+* 本團隊依據所使用之 AI 工具服務條款（Terms of Service），已取得上述素材之合法「商業使用權」。
+* 第三方若合理使用上述純 AI 生成之素材，本團隊不會主張著作權侵權，但若涉及本團隊之商標或整體品牌識別，仍受相關法律保護。
+
+### 3. 人機協作與原創內容 (主張著作權與商標權)
+本專案中之核心視覺與技術資產，包含但不限於：**[舉例：品牌 Logo、UI/UX 介面設計、核心演算法程式碼、經深度編排與修改之獨創文案]**，皆由本團隊成員進行實質之企劃、篩選、人為修改與後期加工。
+* 針對上述具備「人類精神創作」之實質投入內容，本團隊依法主張並保留完整之著作權（© [年份] [專案/公司名稱] All rights reserved.）。
+* 品牌識別標誌（Logo）與標準字已具備商業識別性，本團隊主張商標權（™），未經授權嚴禁任何形式之盜用或仿冒。
+
+### 4. 侵權防範與免責聲明
+本團隊在使用 AI 工具時，已盡合理之查證義務，並避免於提示詞（Prompt）中惡意模仿特定藝術家之受保護畫風或直接抄襲他人具體作品。若權利人認為本專案之部分生成內容有侵權之疑慮，請透過 [聯絡信箱] 聯繫我們，本團隊將立即進行查核與必要之移除處置。
+</file>
+
+<file path="README.md">
+# 資傳人才新創育成
+## ICS-Startup-Ecosystems-Talent-Development
+</file>
+
+</files>
