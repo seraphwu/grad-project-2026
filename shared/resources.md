@@ -17,6 +17,7 @@
 - [GitHub Issues 入門](https://docs.github.com/zh/issues) — 5 分鐘認識任務系統
 - [Markdown 速查表](https://www.markdownguide.org/cheat-sheet/) — 寫 Issue 時的格式參考
 - [Git 視覺化教學](https://learngitbranching.js.org/?locale=zh_TW) — 互動式練習 branch / merge
+- [User Story](https://projectmanager.com.tw/%e5%b0%88%e6%a1%88%e7%ae%a1%e7%90%86/user-story-%e6%80%8e%e9%ba%bc%e5%af%ab/)
 
 ### 工具
 
@@ -35,7 +36,9 @@
 
 ### 學習
 
+<!--
 - [地理空間資料入門](https://example.com/geo-101) — TBD,組長補充
+-->
 
 ### 工具
 
