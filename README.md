@@ -28,8 +28,8 @@
 ```
 https://seraphwu.github.io/grad-project-2026/teams/team-[代號]/
 ```
-- https://seraphwu.github.io/grad-project-2026/teams/team-a/
-- https://seraphwu.github.io/grad-project-2026/teams/team-b/
+- **MapMo**: https://seraphwu.github.io/grad-project-2026/teams/team-a/
+- **Diula**: https://seraphwu.github.io/grad-project-2026/teams/team-b/
 
 **請把這個網址加入瀏覽器書籤**,以後每次開電腦先打開它,就能看到:
 - 距離期中/期末還有幾週
