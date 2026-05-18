@@ -1,7 +1,7 @@
-name: 🤖 AI 對話紀錄
+name: AI 對話紀錄(MapMo)
 description: 記錄與 AI(Claude/ChatGPT 等)對話的內容、產出與反思
 title: "[AI] "
-labels: ["type:ai-log"]
+labels: ["type:ai-log",, "team:a"]
 body:
   - type: markdown
     attributes:
@@ -18,15 +18,6 @@ body:
         > **週次對照**:W1 起算 = 2026-02-23(三下開學)。整個畢製週期 W1–W45,
         > 至 2027-01-03(四上學期結束)。不確定當下是 W 幾? 看儀表板。
 
-  - type: dropdown
-    id: team
-    attributes:
-      label: 組別
-      description: 你是哪一組?
-      options:
-        - "MapMo (team:a)"
-    validations:
-      required: true
 
   - type: dropdown
     id: week
