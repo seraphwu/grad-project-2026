@@ -96,6 +96,6 @@ body:
 
         ### AI 答:
 
-
+    render: markdown
     validations:
       required: true
