@@ -25,7 +25,6 @@ body:
       description: 你是哪一組?
       options:
         - "MapMo (team:a)"
-        - "Diula (team:b)"
     validations:
       required: true
 
