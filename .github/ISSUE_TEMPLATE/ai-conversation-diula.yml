@@ -1,29 +1,13 @@
-name: AI 對話紀錄(Diula)
-description: 記錄與 AI(Claude/ChatGPT 等)對話的內容、產出與反思
+name: 🤖 AI 對話紀錄(多輪) [Diula]
+description: 記錄一次 AI 對話,可包含多輪來回
 title: "[AI] "
-labels: ["type:ai-log", "team:b"]
+labels: ["type:ai-log","team:b"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        ## 為什麼要記錄 AI 對話?
-
-        - **學術誠信**:讓老師清楚知道 AI 在你的專題中扮演什麼角色
-        - **可追溯性**:期末整理開發歷程時,這些紀錄就是現成素材
-        - **學習反思**:寫下來才會發現自己問了什麼、學到了什麼
-        - **避免幻覺受害**:強迫自己驗證 AI 的回答,而不是照單全收
-
-        > 一次完整的對話 = 一個 Issue。不要把多次對話混在同一個 Issue。
-
-        > **週次對照**:W1 起算 = 2026-02-23(三下開學)。整個畢製週期 W1–W45,
-        > 至 2027-01-03(四上學期結束)。不確定當下是 W 幾? 看儀表板。
-
-
   - type: dropdown
     id: week
     attributes:
       label: 週次
-      description: 這次對話發生在哪一週?(W1 = 2026-02-23 那週)
+      description: W1 = 2026-02-23 那週
       options:
         - "W1  (2026-02-23)"
         - "W2  (2026-03-02)"
@@ -87,133 +71,31 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: purpose
+
+  - type: textarea
+    id: conversation
     attributes:
-      label: 對話目的
-      description: 你找 AI 幫忙做什麼?
-      options:
-        - "概念釐清(我不懂某個概念,請 AI 解釋)"
-        - "程式除錯(我的程式跑不動)"
-        - "程式生成(請 AI 幫我寫一段程式)"
-        - "設計討論(我有 idea,想跟 AI 對話磨利它)"
-        - "文獻整理(請 AI 幫我整理研究方向)"
-        - "寫作潤飾(請 AI 改我的文字)"
-        - "腦力激盪(想不到方向,請 AI 給建議)"
-        - "其他"
+      label: 對話內容
+      description: |
+        用以下格式貼,多輪就一直接下去:
+
+        ### 我問:
+        (你的提示詞)
+
+        ### AI 答:
+        (AI 的回應)
+
+        ### 我問:
+        (追問)
+
+        ### AI 答:
+        (回應)
+      value: |
+        ### 我問:
+
+
+        ### AI 答:
+
+      render: markdown
     validations:
       required: true
-
-  - type: textarea
-    id: initial_question
-    attributes:
-      label: 我一開始問了什麼?
-      description: |
-        貼上你的第一個 prompt(或重點摘要)。
-        這個欄位最重要 — 好的提問是好的學習。
-      placeholder: |
-        例:我想做一個 React 倒數計時元件,從 2026-02-23 開始算到今天是第幾週第幾天,
-        要顯示在儀表板上方。請給我元件程式碼,並解釋週次怎麼算。
-    validations:
-      required: true
-
-  - type: textarea
-    id: conversation_summary
-    attributes:
-      label: 對話過程摘要
-      description: |
-        不需要逐字貼,**用自己的話**整理對話發生了什麼。
-        建議格式:
-        - 我問了 A,AI 回 X
-        - 我發現 X 有問題,追問 B
-        - AI 修正成 Y,但我又發現...
-      placeholder: |
-        例:
-        1. 我先問怎麼算「第幾週」,AI 給了用 Date.getTime() 相減除以 7 天的方法
-        2. 跑出來發現跨年會出錯,我追問怎麼處理
-        3. AI 改用 date-fns 套件的 differenceInWeeks,我裝了之後就 OK
-        4. 我又問為什麼不用內建 API,AI 解釋了時區陷阱
-    validations:
-      required: true
-
-  - type: textarea
-    id: ai_output_used
-    attributes:
-      label: 我實際採用的 AI 產出
-      description: |
-        如果 AI 給了程式碼/文字/設計建議,**最終你採用的是哪些**?
-        - 程式碼:貼上最終版(用 ``` 包起來)
-        - 想法:條列你最後採納的
-        - 完全沒用:寫「沒採用,只是學習」
-
-        ⚠️ 若 AI 產出進入專題交付物(程式、報告),這欄**必填**且要誠實。
-      placeholder: |
-        例:採用了這個 hook
-        ```jsx
-        function useProjectWeek(startDate) {
-          // ...
-        }
-        ```
-        但變數命名我自己改過,setInterval 間隔我從 1 秒改成 1 分鐘。
-    validations:
-      required: false
-
-  - type: textarea
-    id: verification
-    attributes:
-      label: 我如何驗證 AI 的回答?
-      description: |
-        AI 會幻覺,你做了什麼確認它沒騙你?
-        例如:跑測試、查官方文件、問同學、自己推導一遍、用別的 AI 交叉驗證。
-      placeholder: |
-        例:
-        - 跑了測試,W1 第一天確實顯示 "第 1 週 · 第 1 天"
-        - 查了 date-fns 官方文件,確認 differenceInWeeks 行為符合說明
-        - 用另一個跨年的日期測試,沒問題
-    validations:
-      required: true
-
-  - type: textarea
-    id: reflection
-    attributes:
-      label: 反思:這次對話我學到什麼?
-      description: |
-        最少寫 3 行。可以從這幾個角度切入:
-        - 我原本不知道的知識點
-        - 我提問方式的好/壞
-        - AI 給的答案哪裡讓我意外
-        - 下次遇到類似問題我會怎麼做
-      placeholder: |
-        例:
-        - 學到 JavaScript 的 Date 處理跨年/時區有很多坑,以後直接用 date-fns
-        - 我一開始 prompt 沒講清楚「跨年要對」,結果第一版有 bug
-        - 下次寫日期相關功能會主動問 AI「邊界條件有哪些」
-    validations:
-      required: true
-
-  - type: textarea
-    id: open_questions
-    attributes:
-      label: 還沒解決的問題
-      description: 這次對話結束後,還有什麼是我沒搞懂、要再問老師或同學的?
-      placeholder: |
-        例:
-        - date-fns 的 timezone 套件要不要也裝?專題用 GitHub Pages 部署會不會有問題?
-        - 老師之前說過要避免外部套件,這個算太重的依賴嗎?
-    validations:
-      required: false
-
-  - type: checkboxes
-    id: integrity_check
-    attributes:
-      label: 學術誠信確認
-      description: 送出前請逐項確認
-      options:
-        - label: 我已經理解 AI 的產出(不是 copy-paste 後完全不懂在做什麼)
-          required: true
-        - label: 我有自己驗證 AI 的回答,不是照單全收
-          required: true
-        - label: 若 AI 產出進入交付物,我已在「實際採用」欄位誠實揭露
-          required: true
-        - label: 我了解這份紀錄會作為期末評分的開發歷程證明之一
-          required: true
